@@ -14,7 +14,7 @@ const BasicTaskList = () => {
   const [showDropDown, setShowDropDown] = useState(false);
 
   return (
-    <div className="flex flex-col border rounded-md max-w-4xl">
+    <div className="flex flex-col rounded-md max-w-4xl">
       <a
         href="#"
         className="flex pb-4"
@@ -29,17 +29,22 @@ const BasicTaskList = () => {
       </a>
 
       {showDropDown && (
-        <div className="flex border-t justify-between">
+        <div
+          className="flex border-
+         justify-between border-t"
+        >
           <div className="flex p-1">
-            <ButtonTaskList className="mr-8">{maximizeIcon}Open</ButtonTaskList>
-            <ButtonTaskList>{calendarIcon}Today</ButtonTaskList>
-            <ButtonTaskList>{unlockIcon}Public</ButtonTaskList>
-            <ButtonTaskList>{discIcon}Normal</ButtonTaskList>
-            <ButtonTaskList>{loaderIcon}Estimation</ButtonTaskList>
+            <ButtonTaskList href="#" className="mr-8 disabled">
+              {maximizeIcon}Open
+            </ButtonTaskList>
+            <ButtonTaskList href="#">{calendarIcon}Today</ButtonTaskList>
+            <ButtonTaskList href="#">{unlockIcon}Public</ButtonTaskList>
+            <ButtonTaskList href="#">{discIcon}Normal</ButtonTaskList>
+            <ButtonTaskList href="#">{loaderIcon}Estimation</ButtonTaskList>
           </div>
           <div className="flex items-center">
-            <ButtonTaskList>Cancel</ButtonTaskList>
-            <ButtonTaskList>Ok</ButtonTaskList>
+            <ButtonTaskList href="#">Cancel</ButtonTaskList>
+            <ButtonTaskList href="#">Ok</ButtonTaskList>
           </div>
         </div>
       )}
