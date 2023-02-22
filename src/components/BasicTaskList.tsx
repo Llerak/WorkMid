@@ -15,9 +15,10 @@ const BasicTaskList = () => {
 
 	const borderStyle = "border rounded-md";
 
-	const handleNewTaskInput = (e: any) => {
-		setInputText(e.target.value);
-		console.log(inputText);
+	const handleWriting = (e: any) => {
+		const { value } = e.target;
+		setInputText(value);
+		value !== "" ? setMenuDisplay(true) : setMenuDisplay(false);
 	};
 
 	return (
@@ -28,7 +29,8 @@ const BasicTaskList = () => {
 				{plusSquareIcon}
 				<input
 					type="text"
-					onChange={handleNewTaskInput}
+					onChange={handleWriting}
+					onFocus={() => setMenuDisplay(true)}
 					placeholder="Type to add new task"
 					className="cursor-pointer font-serif  outline-none"
 				/>
