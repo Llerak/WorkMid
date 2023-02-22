@@ -35,14 +35,9 @@ const BasicTaskList = () => {
 			</div>
 
 			{menuDisplay && (
-				<div
-					className="flex border-
-         justify-between border-t"
-				>
-					<div className="flex p-1">
-						<ButtonTaskList className="mr-8 disabled">
-							{maximizeIcon}Open
-						</ButtonTaskList>
+				<div className="flex justify-between border-t p-1">
+					<div className="flex">
+						<ButtonTaskList className="mr-8">{maximizeIcon}Open</ButtonTaskList>
 						<ButtonTaskList className="disabled-button">
 							{calendarIcon}Today
 						</ButtonTaskList>
@@ -56,9 +51,11 @@ const BasicTaskList = () => {
 							{loaderIcon}Estimation
 						</ButtonTaskList>
 					</div>
-					<div className="flex items-center">
+					<div className="flex">
 						<ButtonTaskList>Cancel</ButtonTaskList>
-						<ButtonTaskList>Ok</ButtonTaskList>
+						<ButtonTaskList className="bg-[#0D55CF] text-white">
+							Ok
+						</ButtonTaskList>
 					</div>
 				</div>
 			)}
