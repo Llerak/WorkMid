@@ -38,7 +38,7 @@ const BasicTaskList = () => {
          justify-between border-t"
         >
           <div className="flex p-1">
-            <ButtonTaskList  className="mr-8 disabled">
+            <ButtonTaskList  className="mr-8">
               {maximizeIcon}Open
             </ButtonTaskList>
             <ButtonTaskList className="disabled-button">{calendarIcon}Today</ButtonTaskList>
