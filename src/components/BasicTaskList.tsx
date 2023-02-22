@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
 	calendarIcon,
 	discIcon,
@@ -12,6 +12,21 @@ import ButtonTaskList from "./modules/ButtonTaskList";
 const BasicTaskList = () => {
 	const [menuDisplay, setMenuDisplay] = useState(false);
 	const [inputText, setInputText] = useState("");
+
+	useEffect(() => {
+		if (!menuDisplay) return;
+		const input = document.getElementById("inputTask");
+
+		const watcherInputFocus = (e: Event) => {
+			if (e.target === input) return;
+			if (inputText === "") {
+				setMenuDisplay(false);
+				return () => window.removeEventListener("click", watcherInputFocus);
+			}
+		};
+
+		window.addEventListener("click", watcherInputFocus);
+	}, [inputText]);
 
 	const borderStyle = "border rounded-md";
 
@@ -32,6 +47,7 @@ const BasicTaskList = () => {
 					onFocus={() => setMenuDisplay(true)}
 					placeholder="Type to add new task"
 					className="cursor-pointer font-serif w-full outline-none"
+					id="inputTask"
 				/>
 			</div>
 
