@@ -38,17 +38,17 @@ const BasicTaskList = () => {
          justify-between border-t"
         >
           <div className="flex p-1">
-            <ButtonTaskList href="#" className="mr-8 disabled">
+            <ButtonTaskList  className="mr-8 disabled">
               {maximizeIcon}Open
             </ButtonTaskList>
-            <ButtonTaskList href="#">{calendarIcon}Today</ButtonTaskList>
-            <ButtonTaskList href="#">{unlockIcon}Public</ButtonTaskList>
-            <ButtonTaskList href="#">{discIcon}Normal</ButtonTaskList>
-            <ButtonTaskList href="#">{loaderIcon}Estimation</ButtonTaskList>
+            <ButtonTaskList className="disabled-button">{calendarIcon}Today</ButtonTaskList>
+            <ButtonTaskList className="disabled-button">{unlockIcon}Public</ButtonTaskList>
+            <ButtonTaskList className="disabled-button">{discIcon}Normal</ButtonTaskList>
+            <ButtonTaskList className="disabled-button">{loaderIcon}Estimation</ButtonTaskList>
           </div>
           <div className="flex items-center">
-            <ButtonTaskList href="#">Cancel</ButtonTaskList>
-            <ButtonTaskList href="#">Ok</ButtonTaskList>
+            <ButtonTaskList >Cancel</ButtonTaskList>
+            <ButtonTaskList >Ok</ButtonTaskList>
           </div>
         </div>
       )}
