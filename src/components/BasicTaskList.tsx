@@ -34,10 +34,9 @@ const BasicTaskList = () => {
 
 			{showDropDown && (
 				<div
-					className="flex border-
-         justify-between border-t"
+					className="flex justify-between border-t p-1"
         >
-          <div className="flex p-1">
+          <div className="flex">
             <ButtonTaskList  className="mr-8">
               {maximizeIcon}Open
             </ButtonTaskList>
@@ -46,7 +45,7 @@ const BasicTaskList = () => {
             <ButtonTaskList className="disabled-button">{discIcon}Normal</ButtonTaskList>
             <ButtonTaskList className="disabled-button">{loaderIcon}Estimation</ButtonTaskList>
           </div>
-          <div className="flex items-center">
+          <div className="flex">
             <ButtonTaskList >Cancel</ButtonTaskList>
             <ButtonTaskList className="bg-[#0D55CF] text-white">Ok</ButtonTaskList>
           </div>
