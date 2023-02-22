@@ -48,7 +48,7 @@ const BasicTaskList = () => {
           </div>
           <div className="flex items-center">
             <ButtonTaskList >Cancel</ButtonTaskList>
-            <ButtonTaskList >Ok</ButtonTaskList>
+            <ButtonTaskList className="bg-[#0D55CF] text-white">Ok</ButtonTaskList>
           </div>
         </div>
       )}
