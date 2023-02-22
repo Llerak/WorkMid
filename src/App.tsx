@@ -4,10 +4,10 @@ import BasicTaskList from "./components/BasicTaskList";
 function App() {
   const border:string ="border border-solid border-blue-500";
   return (
-    <div className="App">
-      <BasicTaskList/>
-    </div>
-  )
+		<div className="flex w-full">
+			<BasicTaskList />
+		</div>
+	);
 }
 
 export default App
