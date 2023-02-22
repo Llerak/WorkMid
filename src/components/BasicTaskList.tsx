@@ -18,7 +18,6 @@ const BasicTaskList = () => {
 	const handleWriting = (e: any) => {
 		const { value } = e.target;
 		setInputText(value);
-		value !== "" ? setMenuDisplay(true) : setMenuDisplay(false);
 	};
 
 	return (
@@ -32,7 +31,7 @@ const BasicTaskList = () => {
 					onChange={handleWriting}
 					onFocus={() => setMenuDisplay(true)}
 					placeholder="Type to add new task"
-					className="cursor-pointer font-serif  outline-none"
+					className="cursor-pointer font-serif w-full outline-none"
 				/>
 			</div>
 
