@@ -15,11 +15,11 @@ const BasicTaskList = () => {
 
   const borderStyle = "border rounded-md";
 
-  const handleWriting = (e: any) => {
-    const { value } = e.target;
-    setInputText(value);
-    value !== "" ? setMenuDisplay(true) : setMenuDisplay(false);
-  };
+
+	const handleWriting = (e: any) => {
+		const { value } = e.target;
+		setInputText(value);
+	};
 
   useEffect(() => {
     if (inputText !== "") {
@@ -28,20 +28,21 @@ const BasicTaskList = () => {
     }
   }, [inputText]);
 
+
   return (
-    <div
-      className={"flex flex-col content-center " + (menuDisplay && borderStyle)}
-    >
-      <div className="flex py-2">
-        {plusSquareIcon}
-        <input
-          type="text"
-          onChange={handleWriting}
-          onFocus={() => setMenuDisplay(true)}
-          placeholder="Type to add new task"
-          className="cursor-pointer font-serif  outline-none"
-        />
-      </div>
+		<div
+			className={"flex flex-col content-center " + (menuDisplay && borderStyle)}
+		>
+			<div className="flex py-2">
+				{plusSquareIcon}
+				<input
+					type="text"
+					onChange={handleWriting}
+					onFocus={() => setMenuDisplay(true)}
+					placeholder="Type to add new task"
+					className="cursor-pointer font-serif w-full outline-none"
+				/>
+			</div>
 
       {menuDisplay && (
         <div className="flex justify-between border-t p-1">
