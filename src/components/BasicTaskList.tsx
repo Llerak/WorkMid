@@ -9,8 +9,12 @@ import {
 } from "../assets/Icons";
 import ButtonTaskList from "./modules/ButtonTaskList";
 
+const initialState = {
+	menuDisplay: false,
+	textInput: "",
+};
 const BasicTaskList = () => {
-	const [showDropDown, setShowDropDown] = useState(false);
+	const [showDropDown, setShowDropDown] = useState(initialState);
 
 	const borderStyle = "border rounded-md";
 
@@ -22,7 +26,7 @@ const BasicTaskList = () => {
 		>
 			<div
 				className="flex py-2"
-				onChange={() => setShowDropDown(!showDropDown)}
+				onFocus={() => setShowDropDown({ menuDisplay: true, ...textInput })}
 			>
 				{plusSquareIcon}
 				<input
