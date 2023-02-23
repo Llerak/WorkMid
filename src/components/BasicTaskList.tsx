@@ -20,9 +20,10 @@ const BasicTaskList = () => {
   const handleSpan = (inputTextArray: string[]) => {
 
     const urlPattern =
-        /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-.][a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/gm;
+        /^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/;
 
-    const RegularGmailPattern = /^[\w-]+@([\w-]+\.)+[\w-]{2,4}$/;
+    const RegularGmailPattern =
+        /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
     inputTextArray.map((item)=>{
       let newSpan = document.createElement("span");
@@ -40,9 +41,9 @@ const BasicTaskList = () => {
           newSpan.style.color = "#7130e6";
           break;
         default:
-          newSpan.style.color = urlPattern.test(item)?"#1588FF":
-              RegularGmailPattern.test(item)?
-                  "#F7A43A":newSpan.style.color;
+          newSpan.style.color = RegularGmailPattern.test(item)?"#F7A43A":
+              urlPattern.test(item)?
+                  "#1588FF":newSpan.style.color;
           break;
       }
 
