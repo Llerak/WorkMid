@@ -75,10 +75,10 @@ const BasicTaskList = () => {
 
         document.getElementById("text-color-span")?.appendChild(newSpan);
       }
-      const inputTextElementr = document.getElementById("input-text");
-      if (textColorSpan.innerHTML != "" && inputTextElementr != null) {
-        inputTextElementr.style.caretColor = "black";
-        inputTextElementr.style.cursor = "text";
+      const inputTextElement = document.getElementById("input-text");
+      if (textColorSpan.innerHTML != "" && inputTextElement != null) {
+        inputTextElement.style.caretColor = "black";
+        inputTextElement.style.cursor = "text";
       }
     }
   }, [inputText]);
