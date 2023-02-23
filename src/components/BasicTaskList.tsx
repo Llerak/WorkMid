@@ -57,42 +57,42 @@ const BasicTaskList = () => {
 
     const textColorSpan = spanRef.current;
     const inputTextElement = inputRef?.current;
-    let inputTextArray: string[] = inputText.split(" ");
+    let inputTextArray: string[] = inputText.split(' ');
 
     if (textColorSpan != null) {
-      textColorSpan.innerHTML = "";
+      textColorSpan.innerHTML = '';
 
       handleSpan(inputTextArray);
 
-      if (textColorSpan.innerHTML != "" && inputTextElement != null) {
-        inputTextElement.style.caretColor = "black";
-        inputTextElement.style.cursor = "text";
+      if (textColorSpan.innerHTML != '' && inputTextElement != null) {
+        inputTextElement.style.caretColor = 'black';
+        inputTextElement.style.cursor = 'text';
       }
     }
   }, [inputText]);
 
   return (
-    <div
-      className={"flex flex-col content-center" + (menuDisplay && borderStyle)}
-    >
-      <div className="flex p-2 w-full h-10">
-        {plusSquareIcon}
-        <input
-          type="text"
-          onChange={handleWriting}
-          onFocus={() => setMenuDisplay(true)}
-          placeholder="Type to add new task"
-          className="cursor-pointer font-serif w-full outline-none text-transparent"
-          ref = {inputRef}
-        />
-        <p
-          className="absolute h-6 w-full flex items-center pointer-events-none ml-[29.0px] font-serif"
-          ref = {spanRef}
-        ></p>
-      </div>
+      <div
+          className={"flex flex-col content-center" + (menuDisplay && borderStyle)}
+      >
+        <div className="flex p-2 w-full h-10">
+          {plusSquareIcon}
+          <input
+              type="text"
+              onChange={handleWriting}
+              onClick={() => setMenuDisplay(!menuDisplay)}
+              placeholder="Type to add new task"
+              className="cursor-pointer font-serif w-full outline-none text-transparent"
+              ref = {inputRef}
+          />
+          <p
+              className="absolute h-6 w-full flex items-center pointer-events-none ml-[29.0px] font-serif"
+              ref = {spanRef}
+          ></p>
+        </div>
 
-      {menuDisplay && <TaskMenu />}
-    </div>
+        {menuDisplay && <TaskMenu />}
+      </div>
   );
 
 };
