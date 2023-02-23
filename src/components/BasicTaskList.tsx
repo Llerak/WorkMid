@@ -6,6 +6,7 @@ const BasicTaskList = () => {
 
   const inputRef = useRef<HTMLInputElement>(null);
   const spanRef = useRef<HTMLInputElement>(null);
+
   const [menuDisplay, setMenuDisplay] = useState(false);
   const [inputText, setInputText] = useState("");
 
@@ -64,15 +65,6 @@ const BasicTaskList = () => {
     window.addEventListener("click", watcherInputFocus);
   }, [inputText]);
 
-  //* Button Accept Watcher
-  useEffect(() => {
-    const buttonOk = document.getElementById("button-ok");
-    if (buttonOk != null) {
-      if (inputText != "") buttonOk.innerHTML = "Add";
-      else if (inputText == "") buttonOk.innerHTML = "Ok";
-    }
-  }, [inputText]);
-
   //* Text input change color
   useEffect(() => {
 
@@ -84,7 +76,6 @@ const BasicTaskList = () => {
       textColorSpan.innerHTML = "";
 
       handleSpan(inputTextArray);
-
 
       if (textColorSpan.innerHTML != "" && inputTextElement != null) {
         inputTextElement.style.caretColor = "black";
@@ -107,7 +98,6 @@ const BasicTaskList = () => {
           className="cursor-pointer font-serif w-full outline-none text-transparent"
           ref = {inputRef}
         />
-
         <p
           className="absolute h-6 w-full flex items-center pointer-events-none ml-[29.0px] font-serif"
           ref = {spanRef}
@@ -117,6 +107,7 @@ const BasicTaskList = () => {
       {menuDisplay && <TaskMenu />}
     </div>
   );
+
 };
 
 export default BasicTaskList;
