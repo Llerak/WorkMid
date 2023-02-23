@@ -20,9 +20,10 @@ const BasicTaskList = () => {
   //* agregar el tratemienro del texto
   const handleSpan = (inputTextArray: string[]) => {
     const urlPattern =
-      /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-.][a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/gm;
+        /^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/;
 
-    const RegularGmailPattern = /^[\w-]+@([\w-]+\.)+[\w-]{2,4}$/;
+    const RegularGmailPattern =
+        /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
     inputTextArray.map((item)=>{
       let newSpan = document.createElement("span");
@@ -40,11 +41,9 @@ const BasicTaskList = () => {
           newSpan.style.color = "#7130e6";
           break;
         default:
-          newSpan.style.color = urlPattern.test(item)
-            ? "#1588FF"
-            : RegularGmailPattern.test(item)
-            ? "#F7A43A"
-            : newSpan.style.color;
+          newSpan.style.color = RegularGmailPattern.test(item)?"#F7A43A":
+              urlPattern.test(item)?
+                  "#1588FF":newSpan.style.color;
           break;
       }
 
@@ -77,62 +76,46 @@ const BasicTaskList = () => {
     }
   };
 
-  //* Input Focus Watcher
-  useEffect(() => {
-    if (!menuDisplay) return;
-    const input = document.getElementById("inputTask");
-
-    const watcherInputFocus = (e: Event) => {
-      if (e.target === input) return;
-      if (inputText === "") {
-        setMenuDisplay(false);
-        return () => window.removeEventListener("click", watcherInputFocus);
-      }
-    };
-
-    window.addEventListener("click", watcherInputFocus);
-  }, [inputText]);
-
   //* Text input change color
   useEffect(() => {
     const textColorSpan = spanRef.current;
     const inputTextElement = inputRef?.current;
-    let inputTextArray: string[] = inputText.split(" ");
+    let inputTextArray: string[] = inputText.split(' ');
 
     if (textColorSpan != null) {
-      textColorSpan.innerHTML = "";
+      textColorSpan.innerHTML = '';
 
       handleSpan(inputTextArray);
 
-      if (textColorSpan.innerHTML != "" && inputTextElement != null) {
-        inputTextElement.style.caretColor = "black";
-        inputTextElement.style.cursor = "text";
+      if (textColorSpan.innerHTML != '' && inputTextElement != null) {
+        inputTextElement.style.caretColor = 'black';
+        inputTextElement.style.cursor = 'text';
       }
     }
   }, [inputText]);
 
   return (
-    <div
-      className={"flex flex-col content-center" + (menuDisplay && borderStyle)}
-    >
-      <div className="flex p-2 w-full h-10">
-        {plusSquareIcon}
-        <input
-          type="text"
-          onChange={handleWriting}
-          onFocus={handleInputFocus}
-          placeholder="Type to add new task"
-          className="cursor-pointer font-serif w-full outline-none text-transparent"
-          ref={inputRef}
-        />
-        <p
-          className="absolute h-6 w-full flex items-center pointer-events-none ml-[29.0px] font-serif"
-          ref={spanRef}
-        ></p>
-      </div>
+      <div
+          className={"flex flex-col content-center" + (menuDisplay && borderStyle)}
+      >
+        <div className="flex p-2 w-full h-10">
+          {plusSquareIcon}
+          <input
+              type="text"
+              onChange={handleWriting}
+              onClick={() => setMenuDisplay(!menuDisplay)}
+              placeholder="Type to add new task"
+              className="cursor-pointer font-serif w-full outline-none text-transparent"
+              ref = {inputRef}
+          />
+          <p
+              className="absolute h-6 w-full flex items-center pointer-events-none ml-[29.0px] font-serif"
+              ref = {spanRef}
+          ></p>
+        </div>
 
-      {menuDisplay && <TaskMenu />}
-    </div>
+        {menuDisplay && <TaskMenu />}
+      </div>
   );
 };
 
