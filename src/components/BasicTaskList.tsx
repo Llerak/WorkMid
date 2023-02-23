@@ -51,22 +51,6 @@ const BasicTaskList = () => {
     })
   }
 
-  //* Input Focus Watcher
-  useEffect(() => {
-    if (!menuDisplay) return;
-    const input = document.getElementById("inputTask");
-
-    const watcherInputFocus = (e: Event) => {
-      if (e.target === input) return;
-      if (inputText === "") {
-        setMenuDisplay(false);
-        return () => window.removeEventListener("click", watcherInputFocus);
-      }
-    };
-
-    window.addEventListener("click", watcherInputFocus);
-  }, [inputText]);
-
   //* Text input change color
   useEffect(() => {
 
