@@ -40,6 +40,50 @@ const BasicTaskList = () => {
 
   //* Text input change color
 
+  useEffect(() => {
+    let inputTextArray: string[] = inputText.split(" ");
+    console.log(inputTextArray);
+    const textColorSpan = document.getElementById("text-color-span");
+    if (textColorSpan != null) {
+      textColorSpan.innerHTML = "";
+
+      for (let index = 0; index < inputTextArray.length; index++) {
+        let newSpan = document.createElement("span");
+
+        newSpan.innerText = inputTextArray[index];
+        newSpan.style.marginRight = "4px";
+
+        //type check
+        switch (inputTextArray[index][0]) {
+          case "@":
+            newSpan.style.color = "#1BAF7D";
+            break;
+          case "#":
+            newSpan.style.color = "#996BED";
+            break;
+          default:
+            break;
+        }
+        const expresionRegularUrl =
+          /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/gm;
+        const expresionRegularGmail =
+          /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+        if (expresionRegularUrl.test(inputTextArray[index])) {
+          newSpan.style.color = "#1588FF";
+        } else if (expresionRegularGmail.test(inputTextArray[index])) {
+          newSpan.style.color = "#F7A43A";
+        }
+
+        document.getElementById("text-color-span")?.appendChild(newSpan);
+      }
+      const inputTextElementr = document.getElementById("input-text");
+      if (textColorSpan.innerHTML != "" && inputTextElementr != null) {
+        inputTextElementr.style.caretColor = "black";
+        inputTextElementr.style.cursor = "text";
+      }
+    }
+  }, [inputText]);
+
   return (
     <div
       className={"flex flex-col content-center" + (menuDisplay && borderStyle)}
@@ -52,13 +96,13 @@ const BasicTaskList = () => {
           onFocus={() => setMenuDisplay(true)}
           placeholder="Type to add new task"
           className="cursor-pointer font-serif w-full outline-none text-transparent"
+          id="input-text"
         />
 
-        <div
-          className="absolute h-6 w-full flex items-center pointer-events-none ml-7 font-serif"
+        <p
+          className="absolute h-6 w-full flex items-center pointer-events-none ml-[29.0px] font-serif"
           id="text-color-span"
-          
-        ></div>
+        ></p>
       </div>
 
       {menuDisplay && <TaskMenu />}
