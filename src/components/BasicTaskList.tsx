@@ -26,30 +26,40 @@ const BasicTaskList = () => {
       /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
     inputTextArray.map((item) => {
-      let newSpan = document.createElement("span");
+      let newElement = document.createElement("a");
 
-      newSpan.innerText = item;
-      newSpan.style.marginRight = "4px";
-      newSpan.style.color = "#374359";
+      newElement.innerText = item;
+      newElement.style.marginRight = "4px";
+      newElement.style.color = "#374359";
+      newElement.style.pointerEvents = "none";
+
+      const IsLink = (href: string): void => {
+        newElement.style.pointerEvents = "auto";
+        newElement.href = href;
+      };
 
       //type check
       switch (item[0]) {
         case "@":
-          newSpan.style.color = "#11ab78";
+          newElement.style.color = "#11ab78";
+          IsLink("#");
           break;
         case "#":
-          newSpan.style.color = "#7130e6";
+          newElement.style.color = "#7130e6";
+          IsLink("#");
           break;
         default:
-          newSpan.style.color = RegularGmailPattern.test(item)
-            ? "#F7A43A"
-            : urlPattern.test(item)
-            ? "#1588FF"
-            : newSpan.style.color;
+          if (RegularGmailPattern.test(item)) {
+            newElement.style.color = "#F7A43A";
+            IsLink("#");
+          } else if (urlPattern.test(item)) {
+            newElement.style.color = "#1588FF";
+            IsLink("#");
+          }
           break;
       }
 
-      spanRef.current?.appendChild(newSpan);
+      spanRef.current?.appendChild(newElement);
     });
   };
 
@@ -109,10 +119,10 @@ const BasicTaskList = () => {
           className="cursor-pointer font-serif w-full outline-none text-transparent"
           ref={inputRef}
         />
-        <p
+        <span
           className="absolute h-6 w-full flex items-center pointer-events-none ml-[29.0px] font-serif"
           ref={spanRef}
-        ></p>
+        ></span>
       </div>
 
       {menuDisplay && <TaskMenu />}
