@@ -39,7 +39,6 @@ const BasicTaskList = () => {
   }, [inputText]);
 
   //* Text input change color
-
   useEffect(() => {
     let inputTextArray: string[] = inputText.split(" ");
     console.log(inputTextArray);
