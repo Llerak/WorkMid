@@ -1,8 +1,11 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef} from "react";
 import { plusSquareIcon } from "../assets/Icons";
 import TaskMenu from "./TaskMenu";
 
 const BasicTaskList = () => {
+
+  const inputRef = useRef<HTMLInputElement>(null);
+  const spanRef = useRef<HTMLInputElement>(null);
   const [menuDisplay, setMenuDisplay] = useState(false);
   const [inputText, setInputText] = useState("");
 
@@ -12,6 +15,38 @@ const BasicTaskList = () => {
     const { value } = e.target;
     setInputText(value);
   };
+
+  const handleSpan = (inputTextArray: string[]) => {
+
+    const urlPattern = /(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/;
+    const RegularGmailPattern = /^[\w-]+@([\w-]+\.)+[\w-]{2,4}$/;
+
+    inputTextArray.map((item)=>{
+      let newSpan = document.createElement("span");
+
+      newSpan.innerText = item;
+      newSpan.style.marginRight = "4px";
+
+      //type check
+      switch (item[0]) {
+        case "@":
+          newSpan.style.color = "#1BAF7D";
+          break;
+        case "#":
+          newSpan.style.color = "#996BED";
+          break;
+        default:
+          break;
+      }
+
+      newSpan.style.color = urlPattern.test(item)?"#1588FF":
+          RegularGmailPattern.test(item)?
+              "#F7A43A":newSpan.style.color;
+
+      spanRef.current?.appendChild(newSpan);
+
+    })
+  }
 
   //* Input Focus Watcher
   useEffect(() => {
@@ -40,42 +75,17 @@ const BasicTaskList = () => {
 
   //* Text input change color
   useEffect(() => {
+
+    const textColorSpan = spanRef.current;
+    const inputTextElement = inputRef?.current;
     let inputTextArray: string[] = inputText.split(" ");
-    console.log(inputTextArray);
-    const textColorSpan = document.getElementById("text-color-span");
+
     if (textColorSpan != null) {
       textColorSpan.innerHTML = "";
 
-      for (let index = 0; index < inputTextArray.length; index++) {
-        let newSpan = document.createElement("span");
+      handleSpan(inputTextArray);
 
-        newSpan.innerText = inputTextArray[index];
-        newSpan.style.marginRight = "4px";
 
-        //type check
-        switch (inputTextArray[index][0]) {
-          case "@":
-            newSpan.style.color = "#1BAF7D";
-            break;
-          case "#":
-            newSpan.style.color = "#996BED";
-            break;
-          default:
-            break;
-        }
-        const expresionRegularUrl =
-          /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/gm;
-        const expresionRegularGmail =
-          /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-        if (expresionRegularUrl.test(inputTextArray[index])) {
-          newSpan.style.color = "#1588FF";
-        } else if (expresionRegularGmail.test(inputTextArray[index])) {
-          newSpan.style.color = "#F7A43A";
-        }
-
-        document.getElementById("text-color-span")?.appendChild(newSpan);
-      }
-      const inputTextElement = document.getElementById("input-text");
       if (textColorSpan.innerHTML != "" && inputTextElement != null) {
         inputTextElement.style.caretColor = "black";
         inputTextElement.style.cursor = "text";
@@ -95,12 +105,12 @@ const BasicTaskList = () => {
           onFocus={() => setMenuDisplay(true)}
           placeholder="Type to add new task"
           className="cursor-pointer font-serif w-full outline-none text-transparent"
-          id="input-text"
+          ref = {inputRef}
         />
 
         <p
           className="absolute h-6 w-full flex items-center pointer-events-none ml-[29.0px] font-serif"
-          id="text-color-span"
+          ref = {spanRef}
         ></p>
       </div>
 
