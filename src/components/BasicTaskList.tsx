@@ -19,7 +19,9 @@ const BasicTaskList = () => {
 
   const handleSpan = (inputTextArray: string[]) => {
 
-    const urlPattern = /(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/;
+    const urlPattern =
+        /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-.][a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/gm;
+
     const RegularGmailPattern = /^[\w-]+@([\w-]+\.)+[\w-]{2,4}$/;
 
     inputTextArray.map((item)=>{
@@ -27,22 +29,22 @@ const BasicTaskList = () => {
 
       newSpan.innerText = item;
       newSpan.style.marginRight = "4px";
+      newSpan.style.color = "#374359";
 
       //type check
       switch (item[0]) {
         case "@":
-          newSpan.style.color = "#1BAF7D";
+          newSpan.style.color = "#11ab78";
           break;
         case "#":
-          newSpan.style.color = "#996BED";
+          newSpan.style.color = "#7130e6";
           break;
         default:
+          newSpan.style.color = urlPattern.test(item)?"#1588FF":
+              RegularGmailPattern.test(item)?
+                  "#F7A43A":newSpan.style.color;
           break;
       }
-
-      newSpan.style.color = urlPattern.test(item)?"#1588FF":
-          RegularGmailPattern.test(item)?
-              "#F7A43A":newSpan.style.color;
 
       spanRef.current?.appendChild(newSpan);
 
