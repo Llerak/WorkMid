@@ -1,9 +1,8 @@
-import React, { useEffect, useState, useRef} from "react";
+import React, { useEffect, useState, useRef, SyntheticEvent } from "react";
 import { plusSquareIcon } from "../assets/Icons";
 import TaskMenu from "./TaskMenu";
 
 const BasicTaskList = () => {
-
   const inputRef = useRef<HTMLInputElement>(null);
   const spanRef = useRef<HTMLInputElement>(null);
 
@@ -12,15 +11,16 @@ const BasicTaskList = () => {
 
   const borderStyle = "border rounded-md";
 
+  //* capturar el  texto del input
   const handleWriting = (e: any) => {
     const { value } = e.target;
     setInputText(value);
   };
 
+  //* agregar el tratemienro del texto
   const handleSpan = (inputTextArray: string[]) => {
-
     const urlPattern =
-        /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-.][a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/gm;
+      /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-.][a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/gm;
 
     const RegularGmailPattern = /^[\w-]+@([\w-]+\.)+[\w-]{2,4}$/;
 
@@ -40,16 +40,42 @@ const BasicTaskList = () => {
           newSpan.style.color = "#7130e6";
           break;
         default:
-          newSpan.style.color = urlPattern.test(item)?"#1588FF":
-              RegularGmailPattern.test(item)?
-                  "#F7A43A":newSpan.style.color;
+          newSpan.style.color = urlPattern.test(item)
+            ? "#1588FF"
+            : RegularGmailPattern.test(item)
+            ? "#F7A43A"
+            : newSpan.style.color;
           break;
       }
 
       spanRef.current?.appendChild(newSpan);
+    });
+  };
 
-    })
-  }
+  //* mientras el input este activo
+  const handleInputFocus = () => {
+
+    if (!menuDisplay) {
+      console.log("set display true");
+      setMenuDisplay(true);
+      console.log("add event");
+      window.addEventListener("click", watcher);
+    }
+    
+    //* agregar una funcion observadora para el click
+    function watcher(event: MouseEvent) {
+      console.log('click')
+      let clickOut = inputRef.current != event.target;
+      let inputEmpty = inputRef.current?.value == "";
+
+      if (clickOut && inputEmpty) {
+        console.log("set display false");
+        setMenuDisplay(false);
+        console.log("remove event");
+        window.removeEventListener("click", watcher);
+      }
+    }
+  };
 
   //* Input Focus Watcher
   useEffect(() => {
@@ -69,7 +95,6 @@ const BasicTaskList = () => {
 
   //* Text input change color
   useEffect(() => {
-
     const textColorSpan = spanRef.current;
     const inputTextElement = inputRef?.current;
     let inputTextArray: string[] = inputText.split(" ");
@@ -95,21 +120,20 @@ const BasicTaskList = () => {
         <input
           type="text"
           onChange={handleWriting}
-          onFocus={() => setMenuDisplay(true)}
+          onFocus={handleInputFocus}
           placeholder="Type to add new task"
           className="cursor-pointer font-serif w-full outline-none text-transparent"
-          ref = {inputRef}
+          ref={inputRef}
         />
         <p
           className="absolute h-6 w-full flex items-center pointer-events-none ml-[29.0px] font-serif"
-          ref = {spanRef}
+          ref={spanRef}
         ></p>
       </div>
 
       {menuDisplay && <TaskMenu />}
     </div>
   );
-
 };
 
 export default BasicTaskList;
