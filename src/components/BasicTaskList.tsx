@@ -146,14 +146,14 @@ const BasicTaskList = () => {
 				"flex flex-col content-center w-4/5 " + (menuDisplay && borderStyle)
 			}
 		>
-			<div
-				className="flex p-2 w-full h-10"
-				onClick={() => setMenuDisplay(!menuDisplay)}
-			>
-				<i className="cursor-pointer">{plusSquareIcon}</i>
+			<div className="flex p-2 w-full h-10">
+				<i className="cursor-pointer" onClick={() => setMenuDisplay(true)}>
+					{plusSquareIcon}
+				</i>
 				<input
 					type="text"
 					onChange={handleWriting}
+					onFocus={handleFocusInput}
 					placeholder="Type to add new task"
 					className="font-serif w-full outline-none text-transparent flex"
 					ref={inputRef}
