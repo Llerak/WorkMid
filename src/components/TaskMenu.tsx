@@ -27,7 +27,7 @@ const TaskMenu = () => {
 			</div>
 			<div className="flex">
 				<ButtonTaskList>Cancel</ButtonTaskList>
-				<ButtonTaskList className="bg-[#0D55CF] text-white" id="button-ok">
+				<ButtonTaskList className="text-white !bg-[#0d54ce]" id="button-ok">
 					Ok
 				</ButtonTaskList>
 			</div>
