@@ -12,6 +12,7 @@ const BasicTaskList = () => {
 	const borderStyle = "border rounded-md";
 
 	//* capturar el  texto del input
+	//TODO TypeIssue handleWriting define event type
 	const handleWriting = (e: any) => {
 		const { value } = e.target;
 		setInputText(value);
@@ -157,6 +158,7 @@ const BasicTaskList = () => {
 					placeholder="Type to add new task"
 					className="font-serif w-full outline-none text-transparent flex"
 					ref={inputRef}
+					value={inputText}
 				/>
 				<span
 					className="absolute h-6 w-full flex items-center pointer-events-none ml-[29.0px] font-serif"
@@ -164,7 +166,12 @@ const BasicTaskList = () => {
 				></span>
 			</div>
 
-			{menuDisplay && <TaskMenu />}
+			{menuDisplay && (
+				<TaskMenu
+					text={{ value: inputText, set: setInputText }}
+					menu={{ value: menuDisplay, set: setMenuDisplay }}
+				/>
+			)}
 		</div>
 	);
 };
