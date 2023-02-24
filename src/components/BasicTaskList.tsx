@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { plusSquareIcon } from "../assets/Icons";
 import TaskMenu from "./TaskMenu";
 
@@ -9,34 +9,30 @@ const BasicTaskList = () => {
 	const borderStyle = "border rounded-md";
 
 	const handleWriting = (e: any) => {
-		const { value } = e.target;
+		const { value } = e.currentTarget;
 		setInputText(value);
 	};
 
-	//* Input Focus Watcher
-	useEffect(() => {
-		if (!menuDisplay) return;
-		const input = document.getElementById("inputTask");
+	const input = useRef<HTMLInputElement>(null);
 
-		const watcherInputFocus = (e: Event) => {
-			if (e.target === input) return;
-			if (inputText === "") {
+	//* Input Focus Watcher
+	const handleFocusInput = () => {
+		console.log("input focus, menu true");
+		setMenuDisplay(true);
+
+		const a = (e: MouseEvent) => {
+			console.log("click");
+			let clickOut = e.target !== input.current;
+			let inputEmpty = input.current?.value === "";
+
+			if (clickOut && inputEmpty) {
 				setMenuDisplay(false);
-				return () => window.removeEventListener("click", watcherInputFocus);
+				window.removeEventListener("click", a);
 			}
 		};
 
-		window.addEventListener("click", watcherInputFocus);
-	}, [inputText]);
-
-	//* Button Accept Watcher
-	useEffect(() => {
-		const buttonOk = document.getElementById("button-ok");
-		if (buttonOk != null) {
-			if (inputText != "") buttonOk.innerHTML = "Add";
-			else if (inputText == "") buttonOk.innerHTML = "Ok";
-		}
-	}, [inputText]);
+		window.addEventListener("click", a);
+	};
 
 	return (
 		<div
@@ -47,9 +43,11 @@ const BasicTaskList = () => {
 				<input
 					type="text"
 					onChange={handleWriting}
-					onFocus={() => setMenuDisplay(true)}
+					onFocus={handleFocusInput}
 					placeholder="Type to add new task"
 					className="cursor-pointer font-serif w-full outline-none"
+					ref={input}
+					value={inputText}
 				/>
 			</div>
 
