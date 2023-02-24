@@ -98,24 +98,65 @@ const BasicTaskList = () => {
 		}
 	}, [inputText]);
 
+	useEffect(() => {
+		const buttonOk = document.getElementById("button-ok");
+
+		const AddDisabled = () => {
+			document.getElementById("today-button")?.classList.add("disabled-button");
+			document
+				.getElementById("public-button")
+				?.classList.add("disabled-button");
+			document
+				.getElementById("normal-button")
+				?.classList.add("disabled-button");
+			document
+				.getElementById("estimation-button")
+				?.classList.add("disabled-button");
+		};
+
+		const DeletedDisabled = () => {
+			document
+				.getElementById("today-button")
+				?.classList.remove("disabled-button");
+			document
+				.getElementById("public-button")
+				?.classList.remove("disabled-button");
+			document
+				.getElementById("normal-button")
+				?.classList.remove("disabled-button");
+			document
+				.getElementById("estimation-button")
+				?.classList.remove("disabled-button");
+		};
+
+		if (buttonOk != null) {
+			if (inputText == "") {
+				buttonOk.innerHTML = "Ok";
+				AddDisabled();
+			} else {
+				buttonOk.innerHTML = "Add";
+				DeletedDisabled();
+			}
+		}
+	}, [inputText]);
+
 	return (
 		<div
 			className={
 				"flex flex-col content-center w-4/5 " + (menuDisplay && borderStyle)
 			}
 		>
-			<div className="flex p-2 w-full h-10">
-				<i className="cursor-pointer" onClick={() => setMenuDisplay(true)}>
-					{plusSquareIcon}
-				</i>
+			<div
+				className="flex p-2 w-full h-10"
+				onClick={() => setMenuDisplay(!menuDisplay)}
+			>
+				<i className="cursor-pointer">{plusSquareIcon}</i>
 				<input
 					type="text"
 					onChange={handleWriting}
-					onFocus={handleFocusInput}
 					placeholder="Type to add new task"
 					className="font-serif w-full outline-none text-transparent flex"
 					ref={inputRef}
-					value={inputText}
 				/>
 				<span
 					className="absolute h-6 w-full flex items-center pointer-events-none ml-[29.0px] font-serif"
@@ -127,5 +168,4 @@ const BasicTaskList = () => {
 		</div>
 	);
 };
-
 export default BasicTaskList;
