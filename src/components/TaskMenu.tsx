@@ -9,7 +9,7 @@ import ButtonTaskList from "./modules/ButtonTaskList";
 
 const TaskMenu = () => {
 	return (
-		<div className="flex justify-between border-t p-1">
+		<div className="flex justify-between border-t p-1 shadow-lg">
 			<div className="flex">
 				<ButtonTaskList className="mr-8">{maximizeIcon}Open</ButtonTaskList>
 				<ButtonTaskList className="disabled-button" id="today-button">
