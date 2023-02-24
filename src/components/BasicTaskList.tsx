@@ -3,93 +3,93 @@ import { plusSquareIcon } from "../assets/Icons";
 import TaskMenu from "./TaskMenu";
 
 const BasicTaskList = () => {
-	const inputRef = useRef<HTMLInputElement>(null);
-	const spanRef = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const spanRef = useRef<HTMLInputElement>(null);
 
-	const [menuDisplay, setMenuDisplay] = useState(false);
-	const [inputText, setInputText] = useState("");
+  const [menuDisplay, setMenuDisplay] = useState(false);
+  const [inputText, setInputText] = useState("");
 
-	const borderStyle = "border rounded-md";
+  const borderStyle = "border rounded-md";
 
-	//* capturar el  texto del input
-	const handleWriting = (e: any) => {
-		const { value } = e.target;
-		setInputText(value);
-	};
+  //* capturar el  texto del input
+  const handleWriting = (e: any) => {
+    const { value } = e.target;
+    setInputText(value);
+  };
 
-	//* agregar el tratemienro del texto
-	const handleSpan = (inputTextArray: string[]) => {
-		const urlPattern =
-			/^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/;
+  //* agregar el tratemienro del texto
+  const handleSpan = (inputTextArray: string[]) => {
+    const urlPattern =
+      /^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/;
 
-		const RegularGmailPattern =
-			/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    const RegularGmailPattern =
+      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
-		inputTextArray.map((item) => {
-			let newElement = document.createElement("a");
+    inputTextArray.map((item) => {
+      let newElement = document.createElement("a");
 
-			newElement.innerText = item;
-			newElement.style.marginRight = "4px";
-			newElement.style.color = "#374359";
-			newElement.style.pointerEvents = "none";
+      newElement.innerText = item;
+      newElement.style.marginRight = "4px";
+      newElement.style.color = "#374359";
+      newElement.style.pointerEvents = "none";
 
-			const IsLink = (href: string): void => {
-				newElement.style.pointerEvents = "auto";
-				newElement.href = href;
-			};
+      const IsLink = (href: string): void => {
+        newElement.style.pointerEvents = "auto";
+        newElement.href = href;
+      };
 
-			//type check
-			switch (item[0]) {
-				case "@":
-					newElement.style.color = "#11ab78";
-					IsLink("#");
-					break;
-				case "#":
-					newElement.style.color = "#7130e6";
-					IsLink("#");
-					break;
-				default:
-					if (RegularGmailPattern.test(item)) {
-						newElement.style.color = "#F7A43A";
-						IsLink("#");
-					} else if (urlPattern.test(item)) {
-						newElement.style.color = "#1588FF";
-						IsLink("#");
-					}
-					break;
-			}
+      //type check
+      switch (item[0]) {
+        case "@":
+          newElement.style.color = "#11ab78";
+          IsLink("#");
+          break;
+        case "#":
+          newElement.style.color = "#7130e6";
+          IsLink("#");
+          break;
+        default:
+          if (RegularGmailPattern.test(item)) {
+            newElement.style.color = "#F7A43A";
+            IsLink("#");
+          } else if (urlPattern.test(item)) {
+            newElement.style.color = "#1588FF";
+            IsLink("#");
+          }
+          break;
+      }
 
-			spanRef.current?.appendChild(newElement);
-		});
-	};
+      spanRef.current?.appendChild(newElement);
+    });
+  };
 
-	//* Input Focus Watcher
-	const handleFocusInput = () => {
-		setMenuDisplay(true);
+  //* Input Focus Watcher
+  const handleFocusInput = () => {
+    setMenuDisplay(true);
 
-		const watcher = (e: MouseEvent) => {
-			let clickOut = e.target !== inputRef.current;
-			let inputEmpty = inputRef.current?.value === "";
+    const watcher = (e: MouseEvent) => {
+      let clickOut = e.target !== inputRef.current;
+      let inputEmpty = inputRef.current?.value === "";
 
-			if (clickOut && inputEmpty) {
-				setMenuDisplay(false);
-				window.removeEventListener("click", watcher);
-			}
-		};
+      if (clickOut && inputEmpty) {
+        setMenuDisplay(false);
+        window.removeEventListener("click", watcher);
+      }
+    };
 
-		window.addEventListener("click", watcher);
-	};
+    window.addEventListener("click", watcher);
+  };
 
-	//* Text input change color
-	useEffect(() => {
-		const textColorSpan = spanRef.current;
-		const inputTextElement = inputRef?.current;
-		let inputTextArray: string[] = inputText.split(" ");
+  //* Text input change color
+  useEffect(() => {
+    const textColorSpan = spanRef.current;
+    const inputTextElement = inputRef?.current;
+    let inputTextArray: string[] = inputText.split(" ");
 
-		if (textColorSpan != null) {
-			textColorSpan.innerHTML = "";
+    if (textColorSpan != null) {
+      textColorSpan.innerHTML = "";
 
-			handleSpan(inputTextArray);
+      handleSpan(inputTextArray);
 
       if (textColorSpan.innerHTML != "" && inputTextElement != null) {
         inputTextElement.style.caretColor = "black";
@@ -140,8 +140,6 @@ const BasicTaskList = () => {
     }
   }, [inputText]);
 
-
-  
   return (
     <div
       className={
@@ -166,8 +164,8 @@ const BasicTaskList = () => {
         ></span>
       </div>
 
-			{menuDisplay && <TaskMenu />}
-		</div>
-	);
+      {menuDisplay && <TaskMenu />}
+    </div>
+  );
 };
 export default BasicTaskList;
