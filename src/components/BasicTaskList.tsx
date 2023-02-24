@@ -106,25 +106,32 @@ const BasicTaskList = () => {
   }, [inputText]);
 
   return (
-    <div
-      className={"flex flex-col content-center" + (menuDisplay && borderStyle)}
-    >
-      <div className="flex p-2 w-full h-10" onClick={() => setMenuDisplay(!menuDisplay)}>
-        <i className="cursor-pointer">{plusSquareIcon}</i>
-        <input
-          type="text"
-          onChange={handleWriting}
-          placeholder="Type to add new task"
-          className="font-serif w-full outline-none text-transparent"
-          ref={inputRef}
-        />
-        <span
-          className="absolute h-6 w-full flex items-center pointer-events-none ml-[29.0px] font-serif"
-          ref={spanRef}
-        ></span>
-      </div>
+    <div className="w-full flex justify-center">
+      <div
+        className={
+          "flex flex-col content-center w-4/5 " + (menuDisplay && borderStyle)
+        }
+      >
+        <div
+          className="flex p-2 w-full h-10"
+          onClick={() => setMenuDisplay(!menuDisplay)}
+        >
+          <i className="cursor-pointer">{plusSquareIcon}</i>
+          <input
+            type="text"
+            onChange={handleWriting}
+            placeholder="Type to add new task"
+            className="font-serif w-full outline-none text-transparent flex"
+            ref={inputRef}
+          />
+          <span
+            className="absolute h-6 w-full flex items-center pointer-events-none ml-[29.0px] font-serif"
+            ref={spanRef}
+          ></span>
+        </div>
 
-      {menuDisplay && <TaskMenu />}
+        {menuDisplay && <TaskMenu />}
+      </div>
     </div>
   );
 };
