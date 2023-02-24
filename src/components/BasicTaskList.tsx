@@ -105,6 +105,50 @@ const BasicTaskList = () => {
     }
   }, [inputText]);
 
+  useEffect(() => {
+    const buttonOk = document.getElementById("button-ok");
+
+    const AddDisabled = () => {
+      document.getElementById("today-button")?.classList.add("disabled-button");
+      document
+        .getElementById("public-button")
+        ?.classList.add("disabled-button");
+      document
+        .getElementById("normal-button")
+        ?.classList.add("disabled-button");
+      document
+        .getElementById("estimation-button")
+        ?.classList.add("disabled-button");
+    };
+
+    const DeletedDisabled = () => {
+      document
+        .getElementById("today-button")
+        ?.classList.remove("disabled-button");
+      document
+        .getElementById("public-button")
+        ?.classList.remove("disabled-button");
+      document
+        .getElementById("normal-button")
+        ?.classList.remove("disabled-button");
+      document
+        .getElementById("estimation-button")
+        ?.classList.remove("disabled-button");
+    };
+
+    if (buttonOk != null) {
+      if (inputText == "") {
+        buttonOk.innerHTML = "Ok";
+        AddDisabled();
+      } else {
+        buttonOk.innerHTML = "Add";
+        DeletedDisabled();
+      }
+    }
+  }, [inputText]);
+
+
+  
   return (
     <div
       className={
@@ -133,5 +177,4 @@ const BasicTaskList = () => {
     </div>
   );
 };
-
 export default BasicTaskList;
