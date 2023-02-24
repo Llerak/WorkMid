@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, SyntheticEvent } from "react";
+import { useEffect, useRef, useState } from "react";
 import { plusSquareIcon } from "../assets/Icons";
 import TaskMenu from "./TaskMenu";
 
@@ -63,28 +63,21 @@ const BasicTaskList = () => {
 		});
 	};
 
-	//* mientras el input este activo
-	const handleInputFocus = () => {
-		if (!menuDisplay) {
-			console.log("set display true");
-			setMenuDisplay(true);
-			console.log("add event");
-			window.addEventListener("click", watcher);
-		}
+	//* Input Focus Watcher
+	const handleFocusInput = () => {
+		setMenuDisplay(true);
 
-		//* agregar una funcion observadora para el click
-		function watcher(event: MouseEvent) {
-			console.log("click");
-			let clickOut = inputRef.current != event.target;
-			let inputEmpty = inputRef.current?.value == "";
+		const watcher = (e: MouseEvent) => {
+			let clickOut = e.target !== inputRef.current;
+			let inputEmpty = inputRef.current?.value === "";
 
 			if (clickOut && inputEmpty) {
-				console.log("set display false");
 				setMenuDisplay(false);
-				console.log("remove event");
 				window.removeEventListener("click", watcher);
 			}
-		}
+		};
+
+		window.addEventListener("click", watcher);
 	};
 
 	//* Text input change color
@@ -111,17 +104,18 @@ const BasicTaskList = () => {
 				"flex flex-col content-center w-4/5 " + (menuDisplay && borderStyle)
 			}
 		>
-			<div
-				className="flex p-2 w-full h-10"
-				onClick={() => setMenuDisplay(!menuDisplay)}
-			>
-				<i className="cursor-pointer">{plusSquareIcon}</i>
+			<div className="flex p-2 w-full h-10">
+				<i className="cursor-pointer" onClick={() => setMenuDisplay(true)}>
+					{plusSquareIcon}
+				</i>
 				<input
 					type="text"
 					onChange={handleWriting}
+					onFocus={handleFocusInput}
 					placeholder="Type to add new task"
 					className="font-serif w-full outline-none text-transparent flex"
 					ref={inputRef}
+					value={inputText}
 				/>
 				<span
 					className="absolute h-6 w-full flex items-center pointer-events-none ml-[29.0px] font-serif"
