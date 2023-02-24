@@ -17,7 +17,24 @@ const BasicTaskList = () => {
 		setInputText(value);
 	};
 
-	//* agregar el tratemienro del texto
+	//* Input Focus Watcher
+	const handleFocusInput = () => {
+		setMenuDisplay(true);
+
+		const watcher = (e: MouseEvent) => {
+			let clickOut = e.target !== inputRef.current;
+			let inputEmpty = inputRef.current?.value === "";
+
+			if (clickOut && inputEmpty) {
+				setMenuDisplay(false);
+				window.removeEventListener("click", watcher);
+			}
+		};
+
+		window.addEventListener("click", watcher);
+	};
+
+	//* agregar el tratamiento del texto
 	const handleSpan = (inputTextArray: string[]) => {
 		const urlPattern =
 			/^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/;
@@ -61,23 +78,6 @@ const BasicTaskList = () => {
 
 			spanRef.current?.appendChild(newElement);
 		});
-	};
-
-	//* Input Focus Watcher
-	const handleFocusInput = () => {
-		setMenuDisplay(true);
-
-		const watcher = (e: MouseEvent) => {
-			let clickOut = e.target !== inputRef.current;
-			let inputEmpty = inputRef.current?.value === "";
-
-			if (clickOut && inputEmpty) {
-				setMenuDisplay(false);
-				window.removeEventListener("click", watcher);
-			}
-		};
-
-		window.addEventListener("click", watcher);
 	};
 
 	//* Text input change color
