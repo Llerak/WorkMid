@@ -12,16 +12,16 @@ const TaskMenu = () => {
 		<div className="flex justify-between border-t p-1">
 			<div className="flex">
 				<ButtonTaskList className="mr-8">{maximizeIcon}Open</ButtonTaskList>
-				<ButtonTaskList className="disabled-button">
+				<ButtonTaskList className="disabled-button" id="today-button">
 					{calendarIcon}Today
 				</ButtonTaskList>
-				<ButtonTaskList className="disabled-button">
+				<ButtonTaskList className="disabled-button" id="public-button">
 					{unlockIcon}Public
 				</ButtonTaskList>
-				<ButtonTaskList className="disabled-button">
+				<ButtonTaskList className="disabled-button" id="normal-button">
 					{discIcon}Normal
 				</ButtonTaskList>
-				<ButtonTaskList className="disabled-button">
+				<ButtonTaskList className="disabled-button" id="estimation-button">
 					{loaderIcon}Estimation
 				</ButtonTaskList>
 			</div>
