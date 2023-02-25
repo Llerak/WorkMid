@@ -4,7 +4,7 @@ import TaskMenu from "./TaskMenu";
 
 const BasicTaskList = () => {
 	const inputRef = useRef<HTMLInputElement>(null);
-	const spanRef = useRef<HTMLInputElement>(null);
+	const spanRef = useRef<HTMLElement>(null);
 
 	const [menuDisplay, setMenuDisplay] = useState(false);
 	const [inputText, setInputText] = useState("");

@@ -1,11 +1,11 @@
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 
 type ButtonTaskListProps = {
 	children?: ReactNode;
 	className?: string;
 	id?: string;
 	onClick?: any;
-	reference?: any;
+	Ref?: any;
 };
 
 const ButtonTaskList = ({
@@ -13,7 +13,7 @@ const ButtonTaskList = ({
 	className,
 	id,
 	onClick,
-	reference,
+	Ref: reference,
 }: ButtonTaskListProps) => {
 	const style: string =
 		"cursor-pointer flex items-center py-0.5 px-4 border rounded-md m-0.5 h-8 text-sm font-mono bg-[#EAF0F5]";
