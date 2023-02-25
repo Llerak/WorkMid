@@ -1,4 +1,4 @@
-import { Dispatch } from "react";
+import { Dispatch, useRef } from "react";
 import {
 	maximizeIcon,
 	calendarIcon,
@@ -18,6 +18,13 @@ interface TaskMenuProps {
 }
 
 const TaskMenu = ({ text, menu }: TaskMenuProps) => {
+	//! References
+	const todayButton = useRef(null);
+	const publicButton = useRef(null);
+	const normalButton = useRef(null);
+	const estimationButton = useRef(null);
+	const buttonOk = useRef(null);
+
 	const handleCancel = () => {
 		text.set("");
 		menu.set(false);

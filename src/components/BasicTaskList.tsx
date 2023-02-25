@@ -21,7 +21,7 @@ const BasicTaskList = () => {
 	const handleFocusInput = () => {
 		setMenuDisplay(true);
 
-		const watcher = (e: MouseEvent) => {
+		const watcher = (e: globalThis.MouseEvent) => {
 			let clickOut = e.target !== inputRef.current;
 			let inputEmpty = inputRef.current?.value === "";
 
