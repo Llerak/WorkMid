@@ -1,4 +1,4 @@
-import React, { Dispatch, useEffect, useRef } from "react";
+import { Dispatch, SetStateAction, useEffect, useRef } from "react";
 import {
 	calendarIcon,
 	discIcon,
@@ -12,7 +12,7 @@ import ButtonTaskList from "./modules/ButtonTaskList";
 
 type State = {
 	value: any;
-	set: Dispatch<React.SetStateAction<any>>;
+	set: Dispatch<SetStateAction<any>>;
 };
 interface TaskMenuProps {
 	text: State;
@@ -22,6 +22,7 @@ interface TaskMenuProps {
 //! START COMPONENT
 const TaskMenu = ({ text, menu }: TaskMenuProps) => {
 	//! references
+
 	const todayButtonRef = useRef<HTMLElement>(null);
 	const publicButtonRef = useRef<HTMLElement>(null);
 	const normalButtonRef = useRef<HTMLElement>(null);
@@ -29,6 +30,7 @@ const TaskMenu = ({ text, menu }: TaskMenuProps) => {
 	const buttonOkRef = useRef<HTMLElement>(null);
 
 	//! effects
+
 	//* ButtonAllower
 	useEffect(() => {
 		const Buttons = [
@@ -59,6 +61,7 @@ const TaskMenu = ({ text, menu }: TaskMenuProps) => {
 	}, [text.value]);
 
 	//! handlers
+
 	const handleCancel = () => {
 		text.set("");
 		menu.set(false);
@@ -69,20 +72,19 @@ const TaskMenu = ({ text, menu }: TaskMenuProps) => {
 	};
 
 	//! render
+
 	return (
 		<div className="flex justify-between border-t p-1 shadow-lg">
 			<div className="flex">
 				<ButtonTaskList className="mr-8">{maximizeIcon}Open</ButtonTaskList>
-				<ButtonTaskList className="disabled-button" Ref={todayButtonRef}>
+				<ButtonTaskList Ref={todayButtonRef}>
 					{calendarIcon}Today
 				</ButtonTaskList>
-				<ButtonTaskList className="disabled-button" Ref={publicButtonRef}>
+				<ButtonTaskList Ref={publicButtonRef}>
 					{unlockIcon}Public
 				</ButtonTaskList>
-				<ButtonTaskList className="disabled-button" Ref={normalButtonRef}>
-					{discIcon}Normal
-				</ButtonTaskList>
-				<ButtonTaskList className="disabled-button" Ref={estimationButtonRef}>
+				<ButtonTaskList Ref={normalButtonRef}>{discIcon}Normal</ButtonTaskList>
+				<ButtonTaskList Ref={estimationButtonRef}>
 					{loaderIcon}Estimation
 				</ButtonTaskList>
 			</div>
