@@ -8,6 +8,8 @@ import {
 } from "../assets/Icons";
 import ButtonTaskList from "./modules/ButtonTaskList";
 
+//! TYPOS AND INTERFACES
+
 type State = {
 	value: any;
 	set: Dispatch<any>;
@@ -17,6 +19,7 @@ interface TaskMenuProps {
 	menu: State;
 }
 
+//! START COMPONENT
 const TaskMenu = ({ text, menu }: TaskMenuProps) => {
 	//! References
 	const todayButtonRef = useRef<HTMLElement>(null);
@@ -25,6 +28,8 @@ const TaskMenu = ({ text, menu }: TaskMenuProps) => {
 	const estimationButtonRef = useRef<HTMLElement>(null);
 	const buttonOkRef = useRef<HTMLElement>(null);
 
+	//!Effects
+	//* ButtonAllower
 	useEffect(() => {
 		const Buttons = [
 			todayButtonRef,
@@ -53,6 +58,7 @@ const TaskMenu = ({ text, menu }: TaskMenuProps) => {
 		}
 	}, [text.value]);
 
+	//! Handlers
 	const handleCancel = () => {
 		text.set("");
 		menu.set(false);
@@ -62,6 +68,8 @@ const TaskMenu = ({ text, menu }: TaskMenuProps) => {
 		if (text.value === "") menu.set(false);
 	};
 
+
+	//! Render
 	return (
 		<div className="flex justify-between border-t p-1 shadow-lg">
 			<div className="flex">
@@ -109,5 +117,6 @@ const TaskMenu = ({ text, menu }: TaskMenuProps) => {
 		</div>
 	);
 };
+//! END COMPONENT
 
 export default TaskMenu;
