@@ -1,28 +1,31 @@
+import { Dispatch } from "react";
 import {
-  maximizeIcon,
-  calendarIcon,
-  unlockIcon,
-  discIcon,
-  loaderIcon,
+	maximizeIcon,
+	calendarIcon,
+	unlockIcon,
+	discIcon,
+	loaderIcon,
 } from "../assets/Icons";
 import ButtonTaskList from "./modules/ButtonTaskList";
 
-//TODO TaskMenuProps define type
+type State = {
+	value: any;
+	set: Dispatch<any>;
+};
 interface TaskMenuProps {
-	text: any;
-	menu: any;
+	text: State;
+	menu: State;
 }
 
 const TaskMenu = ({ text, menu }: TaskMenuProps) => {
 	const handleCancel = () => {
 		text.set("");
 		menu.set(false);
-  };
-  
-  const handleOK = () => {
-    if (text.value === "")
-      menu.set(false)
-  }
+	};
+
+	const handleOK = () => {
+		if (text.value === "") menu.set(false);
+	};
 
 	return (
 		<div className="flex justify-between border-t p-1 shadow-lg">
