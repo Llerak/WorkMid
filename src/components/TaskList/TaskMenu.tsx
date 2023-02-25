@@ -23,11 +23,11 @@ interface TaskMenuProps {
 const TaskMenu = ({ text, menu }: TaskMenuProps) => {
 	//! references
 
-	const todayButtonRef = useRef<HTMLElement>(null);
-	const publicButtonRef = useRef<HTMLElement>(null);
-	const normalButtonRef = useRef<HTMLElement>(null);
-	const estimationButtonRef = useRef<HTMLElement>(null);
-	const buttonOkRef = useRef<HTMLElement>(null);
+	const todayButtonRef = useRef<HTMLDivElement>(null);
+	const publicButtonRef = useRef<HTMLDivElement>(null);
+	const normalButtonRef = useRef<HTMLDivElement>(null);
+	const estimationButtonRef = useRef<HTMLDivElement>(null);
+	const buttonOkRef = useRef<HTMLDivElement>(null);
 
 	//! effects
 
@@ -41,7 +41,7 @@ const TaskMenu = ({ text, menu }: TaskMenuProps) => {
 		];
 
 		const buttonOk =
-			buttonOkRef.current === null ? new HTMLElement() : buttonOkRef.current;
+			buttonOkRef.current === null ? new HTMLDivElement() : buttonOkRef.current;
 
 		const buttonState = (buttons: typeof Buttons, state: boolean) => {
 			buttons.map((button) =>

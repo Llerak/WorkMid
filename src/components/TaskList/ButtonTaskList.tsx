@@ -1,11 +1,11 @@
-import { ReactNode } from "react";
+import { LegacyRef, MouseEventHandler, ReactNode, RefObject } from "react";
 
 type ButtonTaskListProps = {
 	children?: ReactNode;
 	className?: string;
 	id?: string;
-	onClick?: any;
-	Ref?: any;
+	onClick?: MouseEventHandler;
+	Ref?: RefObject<HTMLDivElement>;
 };
 
 const ButtonTaskList = ({
