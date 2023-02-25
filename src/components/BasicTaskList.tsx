@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { MouseEvent, useEffect, useRef, useState } from "react";
 import { plusSquareIcon } from "../assets/Icons";
 import TaskMenu from "./TaskMenu";
 
@@ -12,9 +12,8 @@ const BasicTaskList = () => {
 	const borderStyle = "border rounded-md";
 
 	//* capturar el  texto del input
-	//TODO TypeIssue handleWriting define event type
-	const handleWriting = (e: any) => {
-		const { value } = e.target;
+	const handleWriting = (e: MouseEvent) => {
+		const { value } = e.target as HTMLInputElement;
 		setInputText(value);
 	};
 
