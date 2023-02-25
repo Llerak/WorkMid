@@ -1,4 +1,4 @@
-import { Dispatch, useRef } from "react";
+import { Dispatch, useEffect, useRef } from "react";
 import {
 	maximizeIcon,
 	calendarIcon,
@@ -19,11 +19,39 @@ interface TaskMenuProps {
 
 const TaskMenu = ({ text, menu }: TaskMenuProps) => {
 	//! References
-	const todayButton = useRef(null);
-	const publicButton = useRef(null);
-	const normalButton = useRef(null);
-	const estimationButton = useRef(null);
-	const buttonOk = useRef(null);
+	const todayButtonRef = useRef<HTMLElement>(null);
+	const publicButtonRef = useRef<HTMLElement>(null);
+	const normalButtonRef = useRef<HTMLElement>(null);
+	const estimationButtonRef = useRef<HTMLElement>(null);
+	const buttonOkRef = useRef<HTMLElement>(null);
+
+	useEffect(() => {
+		const Buttons = [
+			todayButtonRef,
+			publicButtonRef,
+			normalButtonRef,
+			estimationButtonRef,
+		];
+
+		const buttonOk =
+			buttonOkRef.current === null ? new HTMLElement() : buttonOkRef.current;
+
+		const buttonState = (buttons: typeof Buttons, state: boolean) => {
+			buttons.map((button) =>
+				state
+					? button.current?.classList.add("disabled-button")
+					: button.current?.classList.remove("disabled-button")
+			);
+		};
+
+		if (text.value == "") {
+			buttonOk.innerHTML = "Ok";
+			buttonState(Buttons, true);
+		} else {
+			buttonOk.innerHTML = "Add";
+			buttonState(Buttons, false);
+		}
+	}, [text.value]);
 
 	const handleCancel = () => {
 		text.set("");
@@ -38,16 +66,32 @@ const TaskMenu = ({ text, menu }: TaskMenuProps) => {
 		<div className="flex justify-between border-t p-1 shadow-lg">
 			<div className="flex">
 				<ButtonTaskList className="mr-8">{maximizeIcon}Open</ButtonTaskList>
-				<ButtonTaskList className="disabled-button" id="today-button">
+				<ButtonTaskList
+					className="disabled-button"
+					reference={todayButtonRef}
+					id="today-button"
+				>
 					{calendarIcon}Today
 				</ButtonTaskList>
-				<ButtonTaskList className="disabled-button" id="public-button">
+				<ButtonTaskList
+					className="disabled-button"
+					reference={publicButtonRef}
+					id="public-button"
+				>
 					{unlockIcon}Public
 				</ButtonTaskList>
-				<ButtonTaskList className="disabled-button" id="normal-button">
+				<ButtonTaskList
+					className="disabled-button"
+					reference={normalButtonRef}
+					id="normal-button"
+				>
 					{discIcon}Normal
 				</ButtonTaskList>
-				<ButtonTaskList className="disabled-button" id="estimation-button">
+				<ButtonTaskList
+					className="disabled-button"
+					reference={estimationButtonRef}
+					id="estimation-button"
+				>
 					{loaderIcon}Estimation
 				</ButtonTaskList>
 			</div>
@@ -57,6 +101,7 @@ const TaskMenu = ({ text, menu }: TaskMenuProps) => {
 					className="text-white !bg-[#0d54ce]"
 					onClick={handleOK}
 					id="button-ok"
+					reference={buttonOkRef}
 				>
 					Ok
 				</ButtonTaskList>
