@@ -1,9 +1,8 @@
-import { LegacyRef, MouseEventHandler, ReactNode, RefObject } from "react";
+import {  MouseEventHandler, ReactNode, RefObject } from "react";
 
 type ButtonTaskListProps = {
 	children?: ReactNode;
 	className?: string;
-	id?: string;
 	onClick?: MouseEventHandler;
 	Ref?: RefObject<HTMLDivElement>;
 };
@@ -11,7 +10,6 @@ type ButtonTaskListProps = {
 const ButtonTaskList = ({
 	children,
 	className,
-	id,
 	onClick,
 	Ref,
 }: ButtonTaskListProps) => {
@@ -23,7 +21,6 @@ const ButtonTaskList = ({
 	return (
 		<div
 			className={style + " " + className}
-			id={id}
 			onClick={onClick}
 			ref={Ref}
 		>
