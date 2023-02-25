@@ -13,7 +13,7 @@ const ButtonTaskList = ({
 	className,
 	id,
 	onClick,
-	Ref: reference,
+	Ref,
 }: ButtonTaskListProps) => {
 	const style: string =
 		"cursor-pointer flex items-center py-0.5 px-4 border rounded-md m-0.5 h-8 text-sm font-mono bg-[#EAF0F5]";
@@ -25,7 +25,7 @@ const ButtonTaskList = ({
 			className={style + " " + className}
 			id={id}
 			onClick={onClick}
-			ref={reference}
+			ref={Ref}
 		>
 			{children}
 		</div>

@@ -5,8 +5,8 @@ import {
 	loaderIcon,
 	maximizeIcon,
 	unlockIcon,
-} from "../assets/Icons";
-import ButtonTaskList from "./modules/ButtonTaskList";
+} from "../../assets/Icons";
+import ButtonTaskList from "./ButtonTaskList";
 
 //! TYPOS AND INTERFACES
 

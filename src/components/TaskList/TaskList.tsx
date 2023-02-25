@@ -1,5 +1,5 @@
-import { MouseEvent, SyntheticEvent, useEffect, useRef, useState } from "react";
-import { plusSquareIcon } from "../assets/Icons";
+import { SyntheticEvent, useEffect, useRef, useState } from "react";
+import { plusSquareIcon } from "../../assets/Icons";
 import TaskMenu from "./TaskMenu";
 
 const BasicTaskList = () => {
