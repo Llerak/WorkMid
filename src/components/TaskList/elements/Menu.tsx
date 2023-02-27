@@ -5,8 +5,8 @@ import {
 	loaderIcon,
 	maximizeIcon,
 	unlockIcon,
-} from "../../assets/Icons";
-import ButtonTaskList from "./ButtonTaskList";
+} from "../../../assets/Icons";
+import Button from "./Button";
 
 //! TYPOS AND INTERFACES
 
@@ -20,7 +20,7 @@ interface TaskMenuProps {
 }
 
 //! START COMPONENT
-const TaskMenu = ({ text, menu }: TaskMenuProps) => {
+const Menu = ({ text, menu }: TaskMenuProps) => {
 	//! references
 
 	const todayButtonRef = useRef<HTMLDivElement>(null);
@@ -76,31 +76,25 @@ const TaskMenu = ({ text, menu }: TaskMenuProps) => {
 	return (
 		<div className="flex justify-between border-t p-1 shadow-lg">
 			<div className="flex">
-				<ButtonTaskList className="mr-8">{maximizeIcon}Open</ButtonTaskList>
-				<ButtonTaskList Ref={todayButtonRef}>
-					{calendarIcon}Today
-				</ButtonTaskList>
-				<ButtonTaskList Ref={publicButtonRef}>
-					{unlockIcon}Public
-				</ButtonTaskList>
-				<ButtonTaskList Ref={normalButtonRef}>{discIcon}Normal</ButtonTaskList>
-				<ButtonTaskList Ref={estimationButtonRef}>
-					{loaderIcon}Estimation
-				</ButtonTaskList>
+				<Button className="mr-8">{maximizeIcon}Open</Button>
+				<Button Ref={todayButtonRef}>{calendarIcon}Today</Button>
+				<Button Ref={publicButtonRef}>{unlockIcon}Public</Button>
+				<Button Ref={normalButtonRef}>{discIcon}Normal</Button>
+				<Button Ref={estimationButtonRef}>{loaderIcon}Estimation</Button>
 			</div>
 			<div className="flex">
-				<ButtonTaskList onClick={handleCancel}>Cancel</ButtonTaskList>
-				<ButtonTaskList
+				<Button onClick={handleCancel}>Cancel</Button>
+				<Button
 					className="text-white !bg-[#0d54ce]"
 					onClick={handleOK}
 					Ref={buttonOkRef}
 				>
 					Ok
-				</ButtonTaskList>
+				</Button>
 			</div>
 		</div>
 	);
 };
 //! END COMPONENT
 
-export default TaskMenu;
+export default Menu;
