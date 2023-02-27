@@ -1,20 +1,32 @@
-import { SyntheticEvent, useEffect, useRef, useState } from "react";
+import { SyntheticEvent, useRef, useState } from "react";
 import { plusSquareIcon } from "../../assets/Icons";
-import TaskMenu from "./TaskMenu";
+import Menu from "./elements/Menu";
+import { insertText } from "./_utils";
 
-const BasicTaskList = () => {
+const TaskList = () => {
 	const inputRef = useRef<HTMLInputElement>(null);
 	const spanRef = useRef<HTMLElement>(null);
 
 	const [menuDisplay, setMenuDisplay] = useState(false);
 	const [inputText, setInputText] = useState("");
 
-	const borderStyle = "border rounded-md";
-
-	//* capturar el  texto del input
+	//* capturar el  texto
 	const handleWriting = (e: SyntheticEvent) => {
 		const { value } = e.target as HTMLInputElement;
+		const colorSpan =
+			spanRef.current === null ? new HTMLElement() : spanRef.current;
+		const input =
+			inputRef.current === null ? new HTMLInputElement() : inputRef.current;
+		const textPieces = value.split(" ");
+
+		// Set State Text
 		setInputText(value);
+
+		colorSpan.innerHTML = "";
+		insertText(textPieces, colorSpan);
+
+		input.style.caretColor = "black";
+		input.style.cursor = "text";
 	};
 
 	//* Input Focus Watcher
@@ -34,74 +46,11 @@ const BasicTaskList = () => {
 		window.addEventListener("click", watcher);
 	};
 
-	//* agregar el tratamiento del texto
-	const handleSpan = (inputTextArray: string[]) => {
-		const urlPattern =
-			/^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/;
-
-		const RegularGmailPattern =
-			/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-
-		inputTextArray.map((item) => {
-			let newElement = document.createElement("a");
-
-			newElement.innerText = item;
-			newElement.style.marginRight = "4px";
-			newElement.style.color = "#374359";
-			newElement.style.pointerEvents = "none";
-
-			const IsLink = (href: string): void => {
-				newElement.style.pointerEvents = "auto";
-				newElement.href = href;
-			};
-
-			//type check
-			switch (item[0]) {
-				case "@":
-					newElement.style.color = "#11ab78";
-					IsLink("#");
-					break;
-				case "#":
-					newElement.style.color = "#7130e6";
-					IsLink("#");
-					break;
-				default:
-					if (RegularGmailPattern.test(item)) {
-						newElement.style.color = "#F7A43A";
-						IsLink("#");
-					} else if (urlPattern.test(item)) {
-						newElement.style.color = "#1588FF";
-						IsLink("#");
-					}
-					break;
-			}
-
-			spanRef.current?.appendChild(newElement);
-		});
-	};
-
-	//* Text input change color
-	useEffect(() => {
-		const textColorSpan = spanRef.current;
-		const inputTextElement = inputRef?.current;
-		let inputTextArray: string[] = inputText.split(" ");
-
-		if (textColorSpan != null) {
-			textColorSpan.innerHTML = "";
-
-			handleSpan(inputTextArray);
-
-			if (textColorSpan.innerHTML != "" && inputTextElement != null) {
-				inputTextElement.style.caretColor = "black";
-				inputTextElement.style.cursor = "text";
-			}
-		}
-	}, [inputText]);
-
 	return (
 		<div
 			className={
-				"flex flex-col content-center w-4/5 " + (menuDisplay && borderStyle)
+				"flex flex-col content-center w-4/5 " +
+				(menuDisplay && "border rounded-md")
 			}
 		>
 			<div className="flex p-2 w-full h-10">
@@ -124,7 +73,7 @@ const BasicTaskList = () => {
 			</div>
 
 			{menuDisplay && (
-				<TaskMenu
+				<Menu
 					text={{ value: inputText, set: setInputText }}
 					menu={{ value: menuDisplay, set: setMenuDisplay }}
 				/>
@@ -132,4 +81,4 @@ const BasicTaskList = () => {
 		</div>
 	);
 };
-export default BasicTaskList;
+export default TaskList;
