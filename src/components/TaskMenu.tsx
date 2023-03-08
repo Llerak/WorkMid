@@ -82,7 +82,7 @@ const TaskMenu = ({ text, menu, rowsState }: TaskMenuProps) => {
 	};
 
 	return (
-		<div className="flex justify-between border-t p-1 shadow-lg overflow-x-scroll">
+		<div className="flex justify-between border-t p-1 shadow-lg">
 			<div className="flex">
 				<ButtonTaskList className="mr-8 ">
 					{maximizeIcon}
