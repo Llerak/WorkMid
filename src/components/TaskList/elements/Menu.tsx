@@ -8,8 +8,6 @@ import {
 } from "../../../assets/Icons";
 import Button from "./Button";
 
-//! TYPOS AND INTERFACES
-
 type State = {
 	value: any;
 	set: Dispatch<SetStateAction<any>>;
@@ -19,10 +17,10 @@ interface TaskMenuProps {
 	menu: State;
 }
 
-//! START COMPONENT
-const Menu = ({ text, menu }: TaskMenuProps) => {
+//!
+export default function Menu ({ text, menu }: TaskMenuProps) {
+	
 	//! references
-
 	const todayButtonRef = useRef<HTMLDivElement>(null);
 	const publicButtonRef = useRef<HTMLDivElement>(null);
 	const normalButtonRef = useRef<HTMLDivElement>(null);
@@ -30,8 +28,6 @@ const Menu = ({ text, menu }: TaskMenuProps) => {
 	const buttonOkRef = useRef<HTMLDivElement>(null);
 
 	//! effects
-
-	//* ButtonAllower
 	useEffect(() => {
 		const Buttons = [
 			todayButtonRef,
@@ -61,7 +57,6 @@ const Menu = ({ text, menu }: TaskMenuProps) => {
 	}, [text.value]);
 
 	//! handlers
-
 	const handleCancel = () => {
 		text.set("");
 		menu.set(false);
@@ -72,7 +67,6 @@ const Menu = ({ text, menu }: TaskMenuProps) => {
 	};
 
 	//! render
-
 	return (
 		<div className="flex justify-between border-t p-1 shadow-lg">
 			<div className="flex">
@@ -95,6 +89,3 @@ const Menu = ({ text, menu }: TaskMenuProps) => {
 		</div>
 	);
 };
-//! END COMPONENT
-
-export default Menu;

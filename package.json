@@ -9,8 +9,14 @@
 		"preview": "vite preview"
 	},
 	"dependencies": {
+		"ag-grid-community": "29.1.0",
+		"ag-grid-enterprise": "29.1.0",
+		"ag-grid-react": "29.1.0",
+		"prop-types": "^15.7.2",
 		"react": "^18.2.0",
-		"react-dom": "^18.2.0"
+		"react-dom": "^18.2.0",
+		"react-lazy-blur-image": "^0.1.2",
+		"react-responsive": "^9.0.2"
 	},
 	"devDependencies": {
 		"@types/react": "^18.0.28",

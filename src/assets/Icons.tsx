@@ -6,9 +6,9 @@ export const plusSquareIcon = (
     viewBox="0 0 24 24"
     fill="none"
     stroke="#0885ff"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
     className="feather feather-plus-square mr-1.5 p-0.5"
   >
     <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
@@ -25,9 +25,9 @@ export const calendarIcon = (
     viewBox="0 0 24 24"
     fill="none"
     stroke="#0C1D37"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
     className="feather feather-calendar mr-1.5 p-0.5"
   >
     <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
@@ -45,9 +45,9 @@ export const loaderIcon = (
     viewBox="0 0 24 24"
     fill="none"
     stroke="#0C1D37"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
     className="feather feather-loader mr-1.5 p-0.5"
   >
     <line x1="12" y1="2" x2="12" y2="6"></line>
@@ -69,9 +69,9 @@ export const maximizeIcon = (
     viewBox="0 0 24 24"
     fill="none"
     stroke="#0C1D37"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
     className="feather feather-maximize-2 mr-1.5 p-0.5"
   >
     <polyline points="15 3 21 3 21 9"></polyline>
@@ -89,9 +89,9 @@ export const unlockIcon = (
     viewBox="0 0 24 24"
     fill="none"
     stroke="#0C1D37"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
     className="feather feather-unlock mr-1.5 p-0.5"
   >
     <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
@@ -107,9 +107,9 @@ export const discIcon = (
     viewBox="0 0 24 24"
     fill="none"
     stroke="#0C1D37"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
     className="feather feather-disc mr-1.5 p-0.5"
   >
     <circle cx="12" cy="12" r="10"></circle>

@@ -1,12 +1,14 @@
-import TaskList from "./components/TaskList/TaskList";
+import React, {useState} from "react";
+import BasicTaskList from "./components/BasicTaskList";
+import AggridList from "./components/AggridList";
 
 function App() {
-	const border: string = "border border-solid border-blue-500";
-	return (
-		<div className="flex w-full">
-			<TaskList />
-		</div>
-	);
+
+    return (
+        <div className="App">
+            <BasicTaskList/>
+        </div>
+    )
 }
 
-export default App;
+export default App
