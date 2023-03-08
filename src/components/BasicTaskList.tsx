@@ -1,17 +1,16 @@
-import React, { SyntheticEvent, useEffect, useRef, useState } from "react";
+import { SyntheticEvent, useEffect, useRef, useState } from "react";
 
 import { plusSquareIcon } from "../assets/Icons";
 import TaskMenu from "./TaskMenu";
 import AggridList from "./AggridList";
 
 const BasicTaskList = () => {
-
 	const inputRef = useRef<HTMLInputElement>(null);
 	const spanRef = useRef<HTMLElement>(null);
 
 	const [rowsList, setRowList] = useState([]);
 	const [menuDisplay, setMenuDisplay] = useState(false);
-	const [inputText, setInputText] = useState('');
+	const [inputText, setInputText] = useState("");
 	const [borderStyle] = useState("border rounded-md w-4/5");
 
 	const handleWriting = (e: SyntheticEvent) => {
@@ -22,7 +21,7 @@ const BasicTaskList = () => {
 	const handleAddClick = () => {
 		setMenuDisplay(!menuDisplay);
 		setInputText("");
-	}
+	};
 
 	//* Input Focus Watcher
 	const handleFocusInput = () => {
@@ -107,49 +106,44 @@ const BasicTaskList = () => {
 
 	return (
 		<div className="grid justify-items-center">
-          <div
-              className={
-                  `flex flex-col w-1/10 my-10 ${(menuDisplay && borderStyle)}`
-              }
-			  style={{transition: 'width 5.5s'}}
-          >
-            <div className="flex p-2 w-full h-15">
+			<div
+				className={`flex flex-col w-1/10 my-10 ${menuDisplay && borderStyle}`}
+				style={{ transition: "width 5.5s" }}
+			>
+				<div className="flex p-2 w-full h-15">
 					<div className="flex p-2 w-full h-15 justify-between">
-						//TODO KARELL ARREGLA PON AQUI EL SIGNO DE MENOS CUANDO EL MENU ESTE DESPLEGADO
-				  <i className="cursor-pointer" onClick={handleAddClick}>
-					  {plusSquareIcon}
-				  </i>
-				  <input
-					  type="text"
-					  onChange={handleWriting}
-					  onFocus={handleFocusInput}
-					  placeholder="Type to add new task"
-					  className="font-serif w-full outline-none text-transparent flex"
-					  ref={inputRef}
-					  value={inputText}
-				  />
-				  <span
-					  className="absolute h-6 w-full flex items-center pointer-events-none ml-[29.0px] font-serif"
-					  ref={spanRef}
-				  ></span>
-			  </div>
-				<div>
-					<img src="/img/team-3.jpg" alt="profile-picture" />
+						{/*TODO KARELL ARREGLA PON AQUI EL SIGNO DE MENOS CUANDO EL MENU ESTE DESPLEGADO*/}
+						<i className="cursor-pointer" onClick={handleAddClick}>
+							{plusSquareIcon}
+						</i>
+						<input
+							type="text"
+							onChange={handleWriting}
+							onFocus={handleFocusInput}
+							placeholder="Type to add new task"
+							className="font-serif w-full outline-none text-transparent flex"
+							ref={inputRef}
+							value={inputText}
+						/>
+						<span
+							className="absolute h-6 w-full flex items-center pointer-events-none ml-[29.0px] font-serif"
+							ref={spanRef}
+						></span>
+					</div>
+					<div>
+						<img src="/img/team-3.jpg" alt="profile-picture" />
+					</div>
 				</div>
-            </div>
-            {menuDisplay && (
-                <TaskMenu
-                    text={{ value: inputText, set: setInputText }}
-                    menu={{ value: menuDisplay, set: setMenuDisplay }}
-					rowsState={{ value: rowsList, set: setRowList }}
-                />
-            )}
-
-          </div>
-			<AggridList
-				rowsState={{ value: rowsList, set: setRowList }}
-			/>
-        </div>
+				{menuDisplay && (
+					<TaskMenu
+						text={{ value: inputText, set: setInputText }}
+						menu={{ value: menuDisplay, set: setMenuDisplay }}
+						rowsState={{ value: rowsList, set: setRowList }}
+					/>
+				)}
+			</div>
+			<AggridList rowsState={{ value: rowsList, set: setRowList }} />
+		</div>
 	);
 };
 export default BasicTaskList;

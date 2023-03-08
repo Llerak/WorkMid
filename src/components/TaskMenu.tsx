@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import {
 	calendarIcon,
 	discIcon,
@@ -7,23 +7,13 @@ import {
 	unlockIcon,
 } from "../assets/Icons";
 import ButtonTaskList from "./modules/ButtonTaskList";
+import { State } from "./_types";
 
 //! TYPOS AND INTERFACES
-
-type State = {
-	value: any;
-	set: Dispatch<SetStateAction<any>>;
-};
-
-type StateObject = {
-	value: any;
-	set: Dispatch<SetStateAction<object>>;
-};
-
 interface TaskMenuProps {
 	text: State;
 	menu: State;
-	rowsState: State
+	rowsState: State;
 }
 
 //! START COMPONENT
@@ -53,16 +43,16 @@ const TaskMenu = ({ text, menu, rowsState }: TaskMenuProps) => {
 		const buttonState = (buttons: typeof Buttons, state: boolean) => {
 			buttons.map((button) =>
 				state
-					? button.current?.classList.add('disabled-button')
-					: button.current?.classList.remove('disabled-button')
+					? button.current?.classList.add("disabled-button")
+					: button.current?.classList.remove("disabled-button")
 			);
 		};
 
-		if (text.value === '') {
-			buttonOk.innerHTML = 'Ok';
+		if (text.value === "") {
+			buttonOk.innerHTML = "Ok";
 			buttonState(Buttons, true);
 		} else {
-			buttonOk.innerHTML = 'Add';
+			buttonOk.innerHTML = "Add";
 			buttonState(Buttons, false);
 		}
 	}, [text.value]);
@@ -77,12 +67,16 @@ const TaskMenu = ({ text, menu, rowsState }: TaskMenuProps) => {
 	const handleOK = () => {
 		if (text.value === "") {
 			menu.set(false);
-		}else{
+		} else {
 			rowsState.set([
 				...rowsState.value,
-				{task: rowsState.value.length+1, text: text.value, photo: '', action: ''}
-				]
-			);
+				{
+					task: rowsState.value.length + 1,
+					text: text.value,
+					photo: "",
+					action: "",
+				},
+			]);
 			text.set(" ");
 		}
 	};
@@ -112,7 +106,9 @@ const TaskMenu = ({ text, menu, rowsState }: TaskMenuProps) => {
 				</ButtonTaskList>
 			</div>
 			<div className="flex">
-				<ButtonTaskList onClick={handleCancel} className="xl:flex hidden">Cancel</ButtonTaskList>
+				<ButtonTaskList onClick={handleCancel} className="xl:flex hidden">
+					Cancel
+				</ButtonTaskList>
 				<ButtonTaskList
 					className="text-white !bg-[#0d54ce] !px-4"
 					onClick={handleOK}
