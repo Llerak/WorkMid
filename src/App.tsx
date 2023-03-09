@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Login from "./components/Login/Login";
-import BasicTaskList from "./components/TaskMenu/BasicTaskList";
+import BasicTaskList from "./components/TaskMenu/TaskList";
 
 export default function App() {
 	const [auth, setauth] = useState<boolean>(false);
