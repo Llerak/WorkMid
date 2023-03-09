@@ -36,8 +36,8 @@ export default function Form({ input, submitAction, name }: FormProps) {
 					</Typography>
 				</CardHeader>
 				<CardBody className="flex flex-col gap-4">
-					{input.map(({ label, set }) => {
-						return <Input label={label} size="lg" onChange={set} />;
+					{input.map(({ label, set }, i) => {
+						return <Input label={label} size="lg" onChange={set} key={i}/>;
 					})}
 					<div className="-ml-2.5">
 						<Checkbox label="Remember Me" />
