@@ -19,6 +19,16 @@ type LoginProps = {
 export default function Login({ auth }: LoginProps) {
 	const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const handleSubmit = () => {
+		console.log(email);
+		console.log(password);
+		//working
+		axios
+			.get("http://luisvidal87.pythonanywhere.com/")
+			.then((response) => {})
+			.catch((error) => {});
+	};
   
 	return (
 		<div className="flex w-screen h-screen items-center justify-center">
@@ -34,7 +44,7 @@ export default function Login({ auth }: LoginProps) {
 				</CardHeader>
 				<CardBody className="flex flex-col gap-4">
 					<Input
-						label="password"
+						label="Email"
 						size="lg"
 						onChange={(e: SyntheticEvent) => handleInputWriting(e, setEmail)}
 					/>
@@ -51,15 +61,7 @@ export default function Login({ auth }: LoginProps) {
 					<Button
 						variant="gradient"
 						fullWidth
-						onClick={() => {
-							console.log(email);
-							console.log(password);
-							//working
-							axios
-								.get("http://luisvidal87.pythonanywhere.com/")
-								.then((response) => {})
-								.catch((error) => {});
-						}}
+						onClick={handleSubmit}
 					>
 						Sign In
 					</Button>
