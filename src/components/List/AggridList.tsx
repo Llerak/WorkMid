@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { State } from "./_types";
+import { State } from "../_types";
 
 import { AgGridReact } from "ag-grid-react";
 

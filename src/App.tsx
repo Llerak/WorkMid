@@ -1,14 +1,11 @@
-import React, {useState} from "react";
-import BasicTaskList from "./components/BasicTaskList";
-import AggridList from "./components/AggridList";
+import BasicTaskList from "./components/TaskMenu/BasicTaskList";
 
 function App() {
-
-    return (
-        <div className="App">
-            <BasicTaskList/>
-        </div>
-    )
+	return (
+		<div className="App">
+			<BasicTaskList />
+		</div>
+	);
 }
 
-export default App
+export default App;

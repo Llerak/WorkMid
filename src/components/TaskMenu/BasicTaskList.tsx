@@ -1,8 +1,8 @@
 import { SyntheticEvent, useEffect, useRef, useState } from "react";
 
-import { plusSquareIcon } from "../assets/Icons";
+import { plusSquareIcon } from "../../assets/Icons";
+import AggridList from "../List/AggridList";
 import TaskMenu from "./TaskMenu";
-import AggridList from "./AggridList";
 
 const BasicTaskList = () => {
 	const inputRef = useRef<HTMLInputElement>(null);

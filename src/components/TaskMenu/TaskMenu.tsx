@@ -5,9 +5,9 @@ import {
 	loaderIcon,
 	maximizeIcon,
 	unlockIcon,
-} from "../assets/Icons";
-import ButtonTaskList from "./modules/ButtonTaskList";
-import { State } from "./_types";
+} from "../../assets/Icons";
+import { State } from "../_types";
+import ButtonTaskList from "./ButtonTaskList";
 
 //! TYPOS AND INTERFACES
 interface TaskMenuProps {
