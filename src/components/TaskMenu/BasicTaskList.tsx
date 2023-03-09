@@ -2,6 +2,7 @@ import { SyntheticEvent, useEffect, useRef, useState } from "react";
 
 import { plusSquareIcon } from "../../assets/Icons";
 import AggridList from "../List/AggridList";
+import { handleInputWriting } from "../_utils";
 import TaskMenu from "./TaskMenu";
 
 const BasicTaskList = () => {
@@ -12,11 +13,6 @@ const BasicTaskList = () => {
 	const [menuDisplay, setMenuDisplay] = useState(false);
 	const [inputText, setInputText] = useState("");
 	const [borderStyle] = useState("border rounded-md w-4/5");
-
-	const handleWriting = (e: SyntheticEvent) => {
-		const { value } = e.target as HTMLInputElement;
-		setInputText(value);
-	};
 
 	const handleAddClick = () => {
 		setMenuDisplay(!menuDisplay);
@@ -112,13 +108,30 @@ const BasicTaskList = () => {
 			>
 				<div className="flex p-2 w-full h-15">
 					<div className="flex p-2 w-full h-15 justify-between">
+
+
+
+
+
+
+
 						{/*TODO KARELL ARREGLA PON AQUI EL SIGNO DE MENOS CUANDO EL MENU ESTE DESPLEGADO*/}
+
+
+
+
+
+
+						
+
 						<i className="cursor-pointer" onClick={handleAddClick}>
 							{plusSquareIcon}
 						</i>
 						<input
 							type="text"
-							onChange={handleWriting}
+							onChange={(e: SyntheticEvent) =>
+								handleInputWriting(e, setInputText)
+							}
 							onFocus={handleFocusInput}
 							placeholder="Type to add new task"
 							className="font-serif w-full outline-none text-transparent flex"

@@ -10,19 +10,15 @@ import {
 } from "@material-tailwind/react";
 import { Dispatch, SetStateAction, SyntheticEvent, useState } from "react";
 import axios from "axios";
+import { handleInputWriting } from "../_utils";
 
 type LoginProps = {
-	setAuth: Dispatch<SetStateAction<boolean>>;
+	auth: Dispatch<SetStateAction<boolean>>;
 };
 
-export default function Login({ setAuth }: LoginProps) {
+export default function Login({ auth }: LoginProps) {
 	const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const handleInputWriting = (e: SyntheticEvent, set:Dispatch<SetStateAction<string>>) => {
-    const { value } = e.target as HTMLInputElement;
-		set(value);
-  };
   
 	return (
 		<div className="flex w-screen h-screen items-center justify-center">
