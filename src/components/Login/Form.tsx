@@ -7,10 +7,9 @@ import {
 	Checkbox,
 	CardFooter,
 	Button,
-	input,
 } from "@material-tailwind/react";
-import { Dispatch, SetStateAction, SyntheticEvent } from "react";
-import { handleInputWriting } from "../_utils";
+import { SyntheticEvent } from "react";
+
 
 type inputObj = {
 	label: string;
