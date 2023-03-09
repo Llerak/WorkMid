@@ -1,16 +1,9 @@
+import { useState } from "react";
+import Login from "./components/Login/Login";
+import BasicTaskList from "./components/TaskMenu/BasicTaskList";
 
-import React, { useState } from "react";
-import BasicTaskList from "./components/BasicTaskList";
-import AggridList from "./components/AggridList";
-import { Loguin } from "./components/Loguin";
+export default function App() {
+	const [auth, setauth] = useState<boolean>(false);
 
-function App() {
-  return (
-    <div className="App">
-      {/*<BasicTaskList />*/}
-      <Loguin />
-    </div>
-  );
+	return <div className="App">{auth ? <BasicTaskList /> : <Login auth={setauth}/>}</div>;
 }
-
-export default App;
