@@ -1,12 +1,12 @@
 import {
-	Card,
-	CardHeader,
-	Typography,
-	CardBody,
-	Input,
-	Checkbox,
-	CardFooter,
 	Button,
+	Card,
+	CardBody,
+	CardFooter,
+	CardHeader,
+	Checkbox,
+	Input,
+	Typography,
 } from "@material-tailwind/react";
 import { SyntheticEvent } from "react";
 
@@ -18,10 +18,18 @@ type inputObj = {
 type FormProps = {
 	input: inputObj[];
 	name: string;
-	submitAction?: () => void;
+	bottonLabel?: {
+		message: string;
+		link: string;
+		action: () => void;
+	};
+	submit?: {
+		text: string;
+		action: () => void;
+	};
 };
 
-export default function Form({ input, submitAction, name }: FormProps) {
+export default function Form({ input, submit, name, bottonLabel }: FormProps) {
 	return (
 		<div className="flex w-screen h-screen items-center justify-center">
 			<Card className="w-96">
@@ -43,19 +51,20 @@ export default function Form({ input, submitAction, name }: FormProps) {
 					</div>
 				</CardBody>
 				<CardFooter className="pt-0">
-					<Button variant="gradient" fullWidth onClick={submitAction}>
-						Sign In
+					<Button variant="gradient" fullWidth onClick={submit?.action}>
+						{submit?.text}
 					</Button>
 					<Typography variant="small" className="mt-6 flex justify-center">
-						Don't have an account?
+						{bottonLabel?.message}
 						<Typography
 							as="a"
 							href="#signup"
 							variant="small"
 							color="blue"
 							className="ml-1 font-bold"
+							onClick={bottonLabel?.action}
 						>
-							Sign up
+							{bottonLabel?.link}
 						</Typography>
 					</Typography>
 				</CardFooter>
