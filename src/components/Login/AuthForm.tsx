@@ -22,6 +22,7 @@ export default function AuthForm({ auth }: AuthProps) {
 }
 
 //TODO hay q hacer la validacion de los compos del formulario
+//TODO hoy q utilizar los cookies para la autovalidacion
 
 //! Login Form
 function Login({ auth, userExist }: IFormProps) {
@@ -46,7 +47,7 @@ function Login({ auth, userExist }: IFormProps) {
 	};
 
 	const handleSubmit = () => {
-		//? Pending review and changes
+		//FIXME para esto existe reactQuery
 		axios
 			.post("https://luisvidal87.pythonanywhere.com/api-token-auth/", {
 				username: email,
