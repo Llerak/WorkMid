@@ -92,19 +92,7 @@ function Signup({ auth, userExist }: IFormProps) {
 		action: () => userExist(true),
 	};
 
-	//* esto es temporal es para comprobar
-	const handleSubmit = () => {
-		//? Pending review and changes
-		axios
-			.post("https://luisvidal87.pythonanywhere.com/api-token-auth/", {
-				username: email,
-				password: password,
-			})
-			.then(() => {
-				auth(true);
-			})
-			.catch((e) => console.error(e));
-	};
+	const handleSubmit = () => {};
 
 	return (
 		<Form
