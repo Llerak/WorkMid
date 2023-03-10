@@ -8,7 +8,7 @@ import {
 	CardFooter,
 	Button,
 } from "@material-tailwind/react";
-import { SyntheticEvent } from "react";
+import { Dispatch, SetStateAction, SyntheticEvent } from "react";
 
 type inputObj = {
 	label: string;
@@ -18,10 +18,20 @@ type inputObj = {
 type FormProps = {
 	input: inputObj[];
 	name: string;
+	bottonLabel?: {
+		message: string;
+		link: string;
+		action: () => void;
+	};
 	submitAction?: () => void;
 };
 
-export default function Form({ input, submitAction, name }: FormProps) {
+export default function Form({
+	input,
+	submitAction,
+	name,
+	bottonLabel,
+}: FormProps) {
 	return (
 		<div className="flex w-screen h-screen items-center justify-center">
 			<Card className="w-96">
@@ -47,15 +57,16 @@ export default function Form({ input, submitAction, name }: FormProps) {
 						Sign In
 					</Button>
 					<Typography variant="small" className="mt-6 flex justify-center">
-						Don't have an account?
+						{bottonLabel?.message}
 						<Typography
 							as="a"
 							href="#signup"
 							variant="small"
 							color="blue"
 							className="ml-1 font-bold"
+							onClick={bottonLabel?.action}
 						>
-							Sign up
+							{bottonLabel?.link}
 						</Typography>
 					</Typography>
 				</CardFooter>
