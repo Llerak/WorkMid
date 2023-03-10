@@ -12,13 +12,16 @@ interface IFormProps extends AuthProps {
 }
 
 export default function AuthForm({ auth }: AuthProps) {
-	const [userExist, setUserExist] = useState(false);
+	const [userExist, setUserExist] = useState(true);
+
 	return userExist ? (
 		<Login auth={auth} userExist={setUserExist} />
 	) : (
 		<Signup auth={auth} userExist={setUserExist} />
 	);
 }
+
+//TODO hay q hacer la validacion de los compos del formulario
 
 //! Login Form
 function Login({ auth, userExist }: IFormProps) {
@@ -77,11 +80,11 @@ function Signup({ auth, userExist }: IFormProps) {
 			set: (e: SyntheticEvent) => handleInputWriting(e, setEmail),
 		},
 		{
-			label: "New password",
+			label: "Password",
 			set: (e: SyntheticEvent) => handleInputWriting(e, setPassword),
 		},
 		{
-			label: "Repeat new password",
+			label: "Repeat Password",
 			set: (e: SyntheticEvent) => handleInputWriting(e, setRepeatedPass),
 		},
 	];

@@ -108,25 +108,8 @@ const BasicTaskList = () => {
 			>
 				<div className="flex p-2 w-full h-15">
 					<div className="flex p-2 w-full h-15 justify-between">
-
-
-
-
-
-
-
-						{/* //TODO KARELL ARREGLA PON AQUI EL SIGNO DE MENOS CUANDO EL MENU ESTE DESPLEGADO
-						*/}
-
-
-
-
-
-
-						
-
 						<i className="cursor-pointer" onClick={handleAddClick}>
-							{plusSquareIcon}
+							{menuDisplay ? minorSquereIcon : plusSquareIcon}
 						</i>
 						<input
 							type="text"
