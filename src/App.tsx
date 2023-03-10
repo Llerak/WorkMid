@@ -4,18 +4,17 @@ import { useState } from "react";
 import { Login } from "./components/Login/Login";
 import BasicTaskList from "./components/TaskMenu/TaskList";
 
-
 export default function App() {
-	const [auth, setauth] = useState<boolean>(false);
+  const [auth, setauth] = useState<boolean>(false);
 
-	const queryClient = new QueryClient();
+  const queryClient = new QueryClient();
 
-	return (
-		<QueryClientProvider client={queryClient}>
-			<div className="App">
-				{auth ? <BasicTaskList /> : <Login auth={setauth} />}
-			</div>
-			<ReactQueryDevtools/>
-		</QueryClientProvider>
-	);
+  return (
+    <QueryClientProvider client={queryClient}>
+      <div className="App">
+        {auth ? <BasicTaskList /> : <Login auth={setauth} />}
+      </div>
+      <ReactQueryDevtools />
+    </QueryClientProvider>
+  );
 }

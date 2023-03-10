@@ -24,7 +24,7 @@ export function Login({ auth }: LoginProps) {
 
   const handleSubmit = () => {
     //#Pending review and changes
-	axios
+    axios
       .post("https://luisvidal87.pythonanywhere.com/api-token-auth/", {
         username: email,
         password: password,
