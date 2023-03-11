@@ -8,7 +8,7 @@ import {
 	Input,
 	Typography,
 } from "@material-tailwind/react";
-import { Dispatch, SetStateAction, SyntheticEvent } from "react";
+import { SyntheticEvent } from "react";
 
 type inputObj = {
 	label: string;

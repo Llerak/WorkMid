@@ -21,11 +21,11 @@ interface TaskMenuProps {
 const TaskMenu = ({ text, menu, rowsState }: TaskMenuProps) => {
 	//! references
 
-	const todayButtonRef = useRef<HTMLElement>(null);
-	const publicButtonRef = useRef<HTMLElement>(null);
-	const normalButtonRef = useRef<HTMLElement>(null);
-	const estimationButtonRef = useRef<HTMLElement>(null);
-	const buttonOkRef = useRef<HTMLElement>(null);
+	const todayButtonRef = useRef<HTMLDivElement>(null);
+	const publicButtonRef = useRef<HTMLDivElement>(null);
+	const normalButtonRef = useRef<HTMLDivElement>(null);
+	const estimationButtonRef = useRef<HTMLDivElement>(null);
+	const buttonOkRef = useRef<HTMLDivElement>(null);
 
 	//! effects
 
