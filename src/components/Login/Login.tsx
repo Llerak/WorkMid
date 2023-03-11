@@ -13,7 +13,7 @@ export function Login({ auth }: LoginProps) {
 
   const inputs = [
     {
-      label: "Email",
+      label: "Username",
       set: (e: SyntheticEvent) => handleInputWriting(e, setEmail),
     },
     {
